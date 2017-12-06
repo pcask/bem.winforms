@@ -19,21 +19,21 @@ namespace RandomSample
 
         private void button1_Click(object sender, EventArgs e)
         {
+            var random = new Random();
             for (int i = 0; i < 50; i++)
             {
-                Random rnd = new Random();
 
-                listBox1.Items.Add(rnd.Next());
+                listBox1.Items.Add(random.Next());
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Random rnd = new Random();
 
             for (int i = 0; i < 50; i++)
             {
-                listBox1.Items.Add(rnd.Next());
+                var random = new Random();
+                listBox1.Items.Add(random.Next());
             }
         }
     }

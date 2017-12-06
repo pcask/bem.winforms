@@ -16,10 +16,13 @@ namespace FromApp
         public Form1()
         {
             InitializeComponent();
+
+            Random();
         }
 
         private bool isUpdate;
         private int selectedRowIndex = -1;
+
 
         private void btnEkle_Click(object sender, EventArgs e)
         {
@@ -29,10 +32,8 @@ namespace FromApp
                 return;
             }
 
-            var li = new ListViewItem(new[] { "", txtAd.Text, txtSoyad.Text, txtKimlikNo.Text, txtUzmanlik.Text });
-
+            var li = new ListViewItem(new[] { "deneme", txtAd.Text, txtSoyad.Text, txtKimlikNo.Text, txtUzmanlik.Text });
             li.ImageKey = RandomKey();
-
             imageList2.Images.Add(li.ImageKey, pictureBox1.Image);
 
             if (isUpdate)
@@ -107,48 +108,11 @@ namespace FromApp
 
             isUpdate = false;
             selectedRowIndex = -1;
-            progressBar1.Value = 0;
         }
 
-        private void lstKisi_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            //if (e.Index < 0) return;
-            ////if the item state is selected them change the back color 
-            //if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
-            //    e = new DrawItemEventArgs(e.Graphics,
-            //                              e.Font,
-            //                              e.Bounds,
-            //                              e.Index,
-            //                              e.State ^ DrawItemState.Selected,
-            //                              e.ForeColor,
-            //                              Color.Yellow);//Choose the color
-
-            //// Draw the background of the ListBox control for each item.
-            //e.DrawBackground();
-            //// Draw the current item text
-
-            //var  box = (ListBox)sender;
-
-            //var selectedItem = box.SelectedItem as Kisi;
-
-            //var brush = (!(selectedItem is null) && selectedItem.IsActive) ? Brushes.Black : Brushes.Gray;
-
-            //e.Graphics.DrawString(((ListBox)sender).Items[e.Index].ToString(), e.Font, brush, e.Bounds, StringFormat.GenericDefault);
-            //// If the ListBox has focus, draw a focus rectangle around the selected item.
-            //e.DrawFocusRectangle();
-
-
-            //Debug.WriteLine(e.Index);
-        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-            for (int i = 0; i < 5; i++)
-            {
-                comboBox1.Items.Add((View)i);
-            }
-
             //listView1.Items.Add("Ali");
             //listView1.Items[0].SubItems.Add("Aydın");
             //listView1.Items[0].SubItems[0].ForeColor = Color.Red;
@@ -165,6 +129,12 @@ namespace FromApp
 
             listView1.SmallImageList = imageList2;
             listView1.LargeImageList = imageList2;
+
+            comboBox1.Items.Add((View)0);
+            comboBox1.Items.Add((View)1);
+            comboBox1.Items.Add((View)2);
+            comboBox1.Items.Add((View)3);
+            comboBox1.Items.Add((View)4);
 
         }
 
@@ -270,57 +240,78 @@ namespace FromApp
             ProgresbarHesapla();
         }
 
+
+        private Random rndGenerator = new Random();
         private string RandomKey()
         {
             string key = "";
 
-            Random rnd = new Random();
-
             for (int i = 0; i < 3; i++)
             {
-                key += ((char)rnd.Next(0, 65536)).ToString();
+                key += ((char)rndGenerator.Next(65536)).ToString();
             }
 
-            return key;
+            Debug.WriteLine($"Key: {key} ");
+            return key.ToString();
+
+        }
+
+
+        private void Random()
+        {
+
+            var dictionary = new Dictionary<string, string>();
+            for (int i = 0; i < 100; i++)
+            {
+                string key = RandomKey();
+                dictionary.Add(key, key);
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            listView1.View = (View)((ComboBox)sender).SelectedItem;
-        }
+            var comboBox = sender as ComboBox;
 
-        private void silToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (pictureBox1.Image != null)
+            if(comboBox is null)
             {
-                pictureBox1.Image = null;
-                ProgresbarHesapla();
+                return;
             }
+
+            //switch (comboBox.SelectedItem.ToString())
+            //{
+            //    case "Large Icon": listView1.View = View.LargeIcon;break;
+            //    case "Small Icon": listView1.View = View.SmallIcon;break;
+            //    case "Details": listView1.View = View.Details;break;
+            //    case "List": listView1.View = View.List;break;
+            //    case "Tiles": listView1.View = View.Tile;break;
+            //    default:
+            //        break;
+            //}
+
+            listView1.View = (View)comboBox.SelectedItem;
         }
 
-        private void güncelleToolStripMenuItem_Click(object sender, EventArgs e)
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            openFileDialog1.ShowDialog();
-            Bitmap img = new Bitmap(openFileDialog1.FileName);
-
-            pictureBox1.Image = img;
+            pictureBox1.Image = null;
             ProgresbarHesapla();
         }
 
-        private void ctImgMenu_Opening(object sender, CancelEventArgs e)
+
+
+        private void yeniToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ctImgMenu.Items[1].Enabled = !(pictureBox1.Image is null);
+            MessageBox.Show("Yeni");
+        }
 
+        private void çıjToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
-            // Amele işi
-            //if (pictureBox1.Image ==null)
-            //{
-            //    ctImgMenu.Items[1].Enabled = false;
-            //}
-            //else
-            //{
-            //    ctImgMenu.Items[1].Enabled = true;
-            //}
+        }
+
+        private void contextMenuStrip1_Opened(object sender, EventArgs e)
+        {
+            toolStripMenuItem2.Enabled = !(pictureBox1.Image is null);
         }
     }
 }
