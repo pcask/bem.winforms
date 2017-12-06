@@ -23,18 +23,17 @@ namespace FromApp
 
         private void btnEkle_Click(object sender, EventArgs e)
         {
-            if(progressBar1.Value < 5)
+            if (progressBar1.Value < 5)
             {
                 MessageBox.Show("Bütün alanları doldurmalısınız.");
                 return;
             }
 
-            var li = new ListViewItem(new[] { "",txtAd.Text, txtSoyad.Text, txtKimlikNo.Text, txtUzmanlik.Text });
+            var li = new ListViewItem(new[] { "", txtAd.Text, txtSoyad.Text, txtKimlikNo.Text, txtUzmanlik.Text });
 
-            imageList2.Images.Add(pictureBox1.Image);
+            li.ImageKey = RandomKey();
 
-            li.ImageIndex = imageList2.Images.Count - 1;
-
+            imageList2.Images.Add(li.ImageKey, pictureBox1.Image);
 
             if (isUpdate)
             {
@@ -108,6 +107,7 @@ namespace FromApp
 
             isUpdate = false;
             selectedRowIndex = -1;
+            progressBar1.Value = 0;
         }
 
         private void lstKisi_DrawItem(object sender, DrawItemEventArgs e)
@@ -143,6 +143,12 @@ namespace FromApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+            for (int i = 0; i < 5; i++)
+            {
+                comboBox1.Items.Add((View)i);
+            }
+
             //listView1.Items.Add("Ali");
             //listView1.Items[0].SubItems.Add("Aydın");
             //listView1.Items[0].SubItems[0].ForeColor = Color.Red;
@@ -166,7 +172,7 @@ namespace FromApp
         {
             var kisi = ((ListBox)sender).SelectedItem as Kisi;
 
-            if(kisi is null)
+            if (kisi is null)
             {
                 return;
             }
@@ -179,7 +185,7 @@ namespace FromApp
             chkAktif.Checked = kisi.IsActive;
 
 
-            if(kisi.Cinsiyet == Cinsiyet.Kadın)
+            if (kisi.Cinsiyet == Cinsiyet.Kadın)
             {
                 rdbCinsiyetKadin.Checked = true;
             }
@@ -187,7 +193,7 @@ namespace FromApp
             {
                 rdbCinsiyetErkek.Checked = true;
             }
-            else if(kisi.Cinsiyet == Cinsiyet.Diger)
+            else if (kisi.Cinsiyet == Cinsiyet.Diger)
             {
                 rbDiger.Checked = true;
             }
@@ -212,7 +218,7 @@ namespace FromApp
             txtKimlikNo.Text = selectedItem.SubItems[3].Text;
             txtUzmanlik.Text = selectedItem.SubItems[4].Text;
 
-            pictureBox1.Image = imageList2.Images[selectedItem.ImageIndex];
+            pictureBox1.Image = imageList2.Images[selectedItem.ImageKey];
 
             isUpdate = true;
             selectedRowIndex = lv.SelectedIndices[0];
@@ -262,6 +268,59 @@ namespace FromApp
         private void txtAd_Leave(object sender, EventArgs e)
         {
             ProgresbarHesapla();
+        }
+
+        private string RandomKey()
+        {
+            string key = "";
+
+            Random rnd = new Random();
+
+            for (int i = 0; i < 3; i++)
+            {
+                key += ((char)rnd.Next(0, 65536)).ToString();
+            }
+
+            return key;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listView1.View = (View)((ComboBox)sender).SelectedItem;
+        }
+
+        private void silToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+                pictureBox1.Image = null;
+                ProgresbarHesapla();
+            }
+        }
+
+        private void güncelleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+            Bitmap img = new Bitmap(openFileDialog1.FileName);
+
+            pictureBox1.Image = img;
+            ProgresbarHesapla();
+        }
+
+        private void ctImgMenu_Opening(object sender, CancelEventArgs e)
+        {
+            ctImgMenu.Items[1].Enabled = !(pictureBox1.Image is null);
+
+
+            // Amele işi
+            //if (pictureBox1.Image ==null)
+            //{
+            //    ctImgMenu.Items[1].Enabled = false;
+            //}
+            //else
+            //{
+            //    ctImgMenu.Items[1].Enabled = true;
+            //}
         }
     }
 }

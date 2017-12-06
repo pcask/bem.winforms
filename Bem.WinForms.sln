@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "Windows
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FromApp", "FromApp\FromApp.csproj", "{76309321-274C-466A-9B29-3371AC6C202B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomSample", "RandomSample\RandomSample.csproj", "{860D1F2A-9DB0-4C28-ADE6-C5492817D7AE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{76309321-274C-466A-9B29-3371AC6C202B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76309321-274C-466A-9B29-3371AC6C202B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76309321-274C-466A-9B29-3371AC6C202B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{860D1F2A-9DB0-4C28-ADE6-C5492817D7AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{860D1F2A-9DB0-4C28-ADE6-C5492817D7AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{860D1F2A-9DB0-4C28-ADE6-C5492817D7AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{860D1F2A-9DB0-4C28-ADE6-C5492817D7AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
