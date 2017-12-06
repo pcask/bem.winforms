@@ -36,9 +36,11 @@ namespace FromApp
 
             ListViewItem li = new ListViewItem(new string[] { "", txtAd.Text, txtSoyad.Text, txtKimlikNo.Text, txtUzmanlik.Text });
 
-            ımageList1.Images.Add(pctBox.Image);
+            string key = Guid.NewGuid().ToString();
+            ımageList1.Images.Add(key,pctBox.Image);
 
-            li.ImageIndex = ımageList1.Images.Count - 1;
+            //li.ImageIndex = ımageList1.Images.Count - 1;
+            li.ImageKey = key;
 
             // ListBox için yazılan kontrol
             //if (!isUpdate)
@@ -133,7 +135,8 @@ namespace FromApp
             txtKimlikNo.Text = selectedItem.SubItems[3].Text;
             txtUzmanlik.Text = selectedItem.SubItems[4].Text;
 
-            pctBox.Image = ımageList1.Images[selectedItem.ImageIndex];
+            //pctBox.Image = ımageList1.Images[selectedItem.ImageIndex];
+            pctBox.Image = ımageList1.Images[selectedItem.ImageKey];
             progressBar1.Value += 20;
 
             isUpdate = true;
