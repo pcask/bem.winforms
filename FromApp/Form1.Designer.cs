@@ -45,10 +45,10 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ımageList1 = new System.Windows.Forms.ImageList(this.components);
             this.pctBox = new System.Windows.Forms.PictureBox();
             this.btnResimYukle = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.ımageList1 = new System.Windows.Forms.ImageList(this.components);
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.pctBox)).BeginInit();
             this.SuspendLayout();
@@ -86,7 +86,7 @@
             this.txtAd.Name = "txtAd";
             this.txtAd.Size = new System.Drawing.Size(104, 20);
             this.txtAd.TabIndex = 1;
-            this.txtAd.TextChanged += new System.EventHandler(this.txtAd_TextChanged);
+            this.txtAd.TextChanged += new System.EventHandler(this.textBoxChangeProgressBar);
             // 
             // txtSoyad
             // 
@@ -94,7 +94,7 @@
             this.txtSoyad.Name = "txtSoyad";
             this.txtSoyad.Size = new System.Drawing.Size(104, 20);
             this.txtSoyad.TabIndex = 2;
-            this.txtSoyad.TextChanged += new System.EventHandler(this.txtSoyad_TextChanged);
+            this.txtSoyad.TextChanged += new System.EventHandler(this.textBoxChangeProgressBar);
             // 
             // txtKimlikNo
             // 
@@ -102,7 +102,7 @@
             this.txtKimlikNo.Name = "txtKimlikNo";
             this.txtKimlikNo.Size = new System.Drawing.Size(104, 20);
             this.txtKimlikNo.TabIndex = 3;
-            this.txtKimlikNo.TextChanged += new System.EventHandler(this.txtKimlikNo_TextChanged);
+            this.txtKimlikNo.TextChanged += new System.EventHandler(this.textBoxChangeProgressBar);
             // 
             // btnEkle
             // 
@@ -130,7 +130,7 @@
             this.txtUzmanlik.Name = "txtUzmanlik";
             this.txtUzmanlik.Size = new System.Drawing.Size(104, 20);
             this.txtUzmanlik.TabIndex = 4;
-            this.txtUzmanlik.TextChanged += new System.EventHandler(this.txtUzmanlik_TextChanged);
+            this.txtUzmanlik.TextChanged += new System.EventHandler(this.textBoxChangeProgressBar);
             // 
             // lblUzmanlik
             // 
@@ -187,6 +187,12 @@
             // 
             this.columnHeader4.Text = "Uzmanlık";
             // 
+            // ımageList1
+            // 
+            this.ımageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.ımageList1.ImageSize = new System.Drawing.Size(16, 16);
+            this.ımageList1.TransparentColor = System.Drawing.Color.Transparent;
+            // 
             // pctBox
             // 
             this.pctBox.Location = new System.Drawing.Point(272, 24);
@@ -209,12 +215,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // ımageList1
-            // 
-            this.ımageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.ımageList1.ImageSize = new System.Drawing.Size(16, 16);
-            this.ımageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // progressBar1
             // 
