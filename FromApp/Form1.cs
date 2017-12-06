@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -18,32 +19,74 @@ namespace FromApp
         }
 
         private bool isUpdate;
+        private int selectedRowIndex = -1;
 
         private void btnEkle_Click(object sender, EventArgs e)
         {
-            // ListBox için yazılan kontrol
+            if(progressBar1.Value < 5)
+            {
+                MessageBox.Show("Bütün alanları doldurmalısınız.");
+                return;
+            }
+
+            var li = new ListViewItem(new[] { "",txtAd.Text, txtSoyad.Text, txtKimlikNo.Text, txtUzmanlik.Text });
+
+            imageList2.Images.Add(pictureBox1.Image);
+
+            li.ImageIndex = imageList2.Images.Count - 1;
+
+
+            if (isUpdate)
+            {
+                //var li2 = listView1.SelectedItems[0];
+                //li2.SubItems[0].Text = txtAd.Text;
+                //li2.SubItems[1].Text = txtSoyad.Text;
+                //li2.SubItems[2].Text = txtKimlikNo.Text;
+                //li2.SubItems[3].Text = txtUzmanlik.Text;
+
+
+                //listView1.SelectedItems[0] = li;
+                //listView1.SelectedItems[0].SubItems[0].Text = txtAd.Text;
+                listView1.Items[selectedRowIndex] = li;
+            }
+            else
+            {
+                listView1.Items.Add(li);
+            }
+
             //var kisi = (isUpdate) ? (Kisi)lstKisi.SelectedItem : new Kisi();
+
             //kisi.Ad = txtAd.Text;
             //kisi.Soyad = txtSoyad.Text;
             //kisi.TcKimlikNo = txtKimlikNo.Text;
             //kisi.Uzmanlik = txtUzmanlik.Text;
+            //kisi.IsActive = chkAktif.Checked;
 
-            if (progressBar1.Value != 100)
-            {
-                MessageBox.Show("Lütfen Bütün Alanları Doldurunuz!!");
-                return;
-            }
+            ////if (rdbCinsiyetKadin.Checked)
+            ////{
+            ////    kisi.Cinsiyet = Cinsiyet.Kadın;
+            ////}
+            ////else if (rdbCinsiyetErkek.Checked)
+            ////{
+            ////    kisi.Cinsiyet = Cinsiyet.Erkek;
+            ////}
 
-            ListViewItem li = new ListViewItem(new string[] { "", txtAd.Text, txtSoyad.Text, txtKimlikNo.Text, txtUzmanlik.Text });
+            //foreach (Control item in pnlCinsiyet.Controls)
+            //{
+            //    if(!(item is RadioButton))
+            //    {
+            //        continue;
+            //    }
 
-            string key = Guid.NewGuid().ToString();
-            ımageList1.Images.Add(key,pctBox.Image);
+            //    var rb = item as RadioButton;
 
-            //li.ImageIndex = ımageList1.Images.Count - 1;
-            li.ImageKey = key;
+            //    if (rb.Checked)
+            //    {
+            //        kisi.Cinsiyet = (Cinsiyet)int.Parse(rb.Tag.ToString());
+            //    }
+            //}
 
 
-            // ListBox için yazılan kontrol
             //if (!isUpdate)
             //{
             //    lstKisi.Items.Add(kisi);
@@ -53,124 +96,172 @@ namespace FromApp
             //    lstKisi.Items[lstKisi.SelectedIndex] = kisi;
             //}
 
-            if (!isUpdate)
-            {
-                lstWKisi.Items.Add(li);
-            }
-            else
-            {
-                lstWKisi.Items[selectedRowIndex] = li;
-            }
-
             txtAd.Text = "";
             txtSoyad.Text = "";
             txtKimlikNo.Text = "";
             txtUzmanlik.Text = "";
+            pictureBox1.Image = null;
+            //chkAktif.Checked = true;
 
-            pctBox.Image = null;
-            progressBar1.Value =0;
+            //rdbCinsiyetErkek.Checked = false;
+            //rdbCinsiyetKadin.Checked = false;
+
             isUpdate = false;
-        }
-
-        private void lstKisi_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (lstKisi.SelectedItem is null)
-            {
-                return;
-            }
-
-            Kisi gelenKisi = lstKisi.SelectedItem as Kisi;
-
-            txtAd.Text = gelenKisi.Ad;
-            txtSoyad.Text = gelenKisi.Soyad;
-            txtKimlikNo.Text = gelenKisi.TcKimlikNo;
-            txtUzmanlik.Text = gelenKisi.Uzmanlik;
-
-            isUpdate = true;
+            selectedRowIndex = -1;
         }
 
         private void lstKisi_DrawItem(object sender, DrawItemEventArgs e)
         {
-            //if (!cbAktif.Checked)
-            //{
-            //    e.DrawBackground();
-            //    Graphics g = e.Graphics;
+            //if (e.Index < 0) return;
+            ////if the item state is selected them change the back color 
+            //if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+            //    e = new DrawItemEventArgs(e.Graphics,
+            //                              e.Font,
+            //                              e.Bounds,
+            //                              e.Index,
+            //                              e.State ^ DrawItemState.Selected,
+            //                              e.ForeColor,
+            //                              Color.Yellow);//Choose the color
 
-            //    g.FillRectangle(new SolidBrush(Color.Silver), e.Bounds);
+            //// Draw the background of the ListBox control for each item.
+            //e.DrawBackground();
+            //// Draw the current item text
 
-            //    e.DrawFocusRectangle();
-            //}
+            //var  box = (ListBox)sender;
+
+            //var selectedItem = box.SelectedItem as Kisi;
+
+            //var brush = (!(selectedItem is null) && selectedItem.IsActive) ? Brushes.Black : Brushes.Gray;
+
+            //e.Graphics.DrawString(((ListBox)sender).Items[e.Index].ToString(), e.Font, brush, e.Bounds, StringFormat.GenericDefault);
+            //// If the ListBox has focus, draw a focus rectangle around the selected item.
+            //e.DrawFocusRectangle();
+
+
+            //Debug.WriteLine(e.Index);
         }
 
-        private void lstWKisi_SelectedIndexChanged(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            //if (lstWKisi.SelectedItems is null)
-            //{
-            //    return;
-            //}
+            //listView1.Items.Add("Ali");
+            //listView1.Items[0].SubItems.Add("Aydın");
+            //listView1.Items[0].SubItems[0].ForeColor = Color.Red;
+            //listView1.Items[0].SubItems[1].ForeColor = Color.Blue;
+            //var image = new Bitmap()
 
-            //txtAd.Text = lstWKisi.SelectedItems[0].Text;
-            //txtSoyad.Text = lstWKisi.SelectedItems[0].SubItems[0].Text;
-            //txtKimlikNo.Text = lstWKisi.SelectedItems[0].SubItems[1].Text;
-            //txtUzmanlik.Text = lstWKisi.SelectedItems[0].SubItems[2].Text;
+            //listView1.Items.Add("Ayşe");
 
-            //isUpdate = true;
+            //var listItem = new ListViewItem("Mehmet");
+            //listView1.Items.Add(listItem);
+
+            //var li2Column = new ListViewItem(new[] { "Hasan", "Yavuz" });
+            //listView1.Items.Add(li2Column);
+
+            listView1.SmallImageList = imageList2;
+            listView1.LargeImageList = imageList2;
+
         }
 
-        private int selectedRowIndex;
-
-        private void lstWKisi_DoubleClick(object sender, EventArgs e)
+        private void lstKisi_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListView lv = sender as ListView;
-            //ListView lv = (ListView)sender;
+            var kisi = ((ListBox)sender).SelectedItem as Kisi;
+
+            if(kisi is null)
+            {
+                return;
+            }
+
+            txtAd.Text = kisi.Ad;
+            txtSoyad.Text = kisi.Soyad;
+            txtKimlikNo.Text = kisi.TcKimlikNo;
+            txtUzmanlik.Text = kisi.Uzmanlik;
+
+            chkAktif.Checked = kisi.IsActive;
+
+
+            if(kisi.Cinsiyet == Cinsiyet.Kadın)
+            {
+                rdbCinsiyetKadin.Checked = true;
+            }
+            else if (kisi.Cinsiyet == Cinsiyet.Erkek)
+            {
+                rdbCinsiyetErkek.Checked = true;
+            }
+            else if(kisi.Cinsiyet == Cinsiyet.Diger)
+            {
+                rbDiger.Checked = true;
+            }
+
+            isUpdate = true;
+        }
+
+        private void listView1_DoubleClick(object sender, EventArgs e)
+        {
+            var lv = sender as ListView;
+            //var lv = (ListView)sender;
 
             if (lv is null)
             {
                 return;
             }
 
-            ListViewItem selectedItem = lv.SelectedItems[0];
+            var selectedItem = lv.SelectedItems[0];
 
             txtAd.Text = selectedItem.SubItems[1].Text;
             txtSoyad.Text = selectedItem.SubItems[2].Text;
             txtKimlikNo.Text = selectedItem.SubItems[3].Text;
             txtUzmanlik.Text = selectedItem.SubItems[4].Text;
 
-            pctBox.Image = ımageList1.Images[selectedItem.ImageKey];
-            progressBar1.Value += 20;
+            pictureBox1.Image = imageList2.Images[selectedItem.ImageIndex];
 
             isUpdate = true;
-
             selectedRowIndex = lv.SelectedIndices[0];
         }
 
-        private void btnResimYukle_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                Bitmap img = new Bitmap(openFileDialog1.FileName);
+            openFileDialog1.ShowDialog();
+            var img = new Bitmap(openFileDialog1.FileName);
 
-                pctBox.Image = img;
-
-                progressBar1.Value += 20;
-            }
+            pictureBox1.Image = img;
+            ProgresbarHesapla();
         }
 
-        private void textBoxChangeProgressBar(object sender, EventArgs e)
+        private void ProgresbarHesapla()
         {
-            TextBox txt = sender as TextBox;
-            if (txt.Tag == null)
+            byte value = 0;
+
+            if (!string.IsNullOrWhiteSpace(txtAd.Text))
             {
-                progressBar1.Value += 20;
-                txt.Tag = "dolu";
+                value++;
             }
 
-            if (txt.Text == "")
+            if (!string.IsNullOrWhiteSpace(txtSoyad.Text))
             {
-                txt.Tag = null;
-                progressBar1.Value -= 20;
+                value++;
             }
+
+            if (!string.IsNullOrWhiteSpace(txtKimlikNo.Text))
+            {
+                value++;
+            }
+
+            if (!string.IsNullOrWhiteSpace(txtUzmanlik.Text))
+            {
+                value++;
+            }
+
+            if (pictureBox1.Image != null)
+            {
+                value++;
+            }
+
+            progressBar1.Value = value;
         }
 
+        private void txtAd_Leave(object sender, EventArgs e)
+        {
+            ProgresbarHesapla();
+        }
     }
 }

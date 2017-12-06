@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.lblAd = new System.Windows.Forms.Label();
             this.lblSoyAd = new System.Windows.Forms.Label();
             this.lblKimlikNo = new System.Windows.Forms.Label();
@@ -36,21 +37,27 @@
             this.txtSoyad = new System.Windows.Forms.TextBox();
             this.txtKimlikNo = new System.Windows.Forms.TextBox();
             this.btnEkle = new System.Windows.Forms.Button();
-            this.lstKisi = new System.Windows.Forms.ListBox();
             this.txtUzmanlik = new System.Windows.Forms.TextBox();
             this.lblUzmanlik = new System.Windows.Forms.Label();
-            this.cbAktif = new System.Windows.Forms.CheckBox();
-            this.lstWKisi = new System.Windows.Forms.ListView();
+            this.chkAktif = new System.Windows.Forms.CheckBox();
+            this.pnlCinsiyet = new System.Windows.Forms.Panel();
+            this.rbDiger = new System.Windows.Forms.RadioButton();
+            this.rdbCinsiyetErkek = new System.Windows.Forms.RadioButton();
+            this.rdbCinsiyetKadin = new System.Windows.Forms.RadioButton();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ımageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.pctBox = new System.Windows.Forms.PictureBox();
-            this.btnResimYukle = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            ((System.ComponentModel.ISupportInitialize)(this.pctBox)).BeginInit();
+            this.pnlCinsiyet.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblAd
@@ -85,52 +92,43 @@
             this.txtAd.Location = new System.Drawing.Point(112, 24);
             this.txtAd.Name = "txtAd";
             this.txtAd.Size = new System.Drawing.Size(104, 20);
-            this.txtAd.TabIndex = 1;
-            this.txtAd.TextChanged += new System.EventHandler(this.textBoxChangeProgressBar);
+            this.txtAd.TabIndex = 3;
+ 
+            this.txtAd.Leave += new System.EventHandler(this.txtAd_Leave);
             // 
             // txtSoyad
             // 
             this.txtSoyad.Location = new System.Drawing.Point(112, 55);
             this.txtSoyad.Name = "txtSoyad";
             this.txtSoyad.Size = new System.Drawing.Size(104, 20);
-            this.txtSoyad.TabIndex = 2;
-            this.txtSoyad.TextChanged += new System.EventHandler(this.textBoxChangeProgressBar);
+            this.txtSoyad.TabIndex = 4;
+            this.txtSoyad.Leave += new System.EventHandler(this.txtAd_Leave);
             // 
             // txtKimlikNo
             // 
             this.txtKimlikNo.Location = new System.Drawing.Point(112, 86);
             this.txtKimlikNo.Name = "txtKimlikNo";
             this.txtKimlikNo.Size = new System.Drawing.Size(104, 20);
-            this.txtKimlikNo.TabIndex = 3;
-            this.txtKimlikNo.TextChanged += new System.EventHandler(this.textBoxChangeProgressBar);
+            this.txtKimlikNo.TabIndex = 5;
+            this.txtKimlikNo.Leave += new System.EventHandler(this.txtAd_Leave);
             // 
             // btnEkle
             // 
-            this.btnEkle.Location = new System.Drawing.Point(112, 198);
+            this.btnEkle.Location = new System.Drawing.Point(12, 175);
             this.btnEkle.Name = "btnEkle";
-            this.btnEkle.Size = new System.Drawing.Size(104, 32);
+            this.btnEkle.Size = new System.Drawing.Size(204, 23);
             this.btnEkle.TabIndex = 6;
             this.btnEkle.Text = "Kaydet";
             this.btnEkle.UseVisualStyleBackColor = true;
             this.btnEkle.Click += new System.EventHandler(this.btnEkle_Click);
-            // 
-            // lstKisi
-            // 
-            this.lstKisi.FormattingEnabled = true;
-            this.lstKisi.Location = new System.Drawing.Point(12, 487);
-            this.lstKisi.Name = "lstKisi";
-            this.lstKisi.Size = new System.Drawing.Size(484, 56);
-            this.lstKisi.TabIndex = 7;
-            this.lstKisi.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lstKisi_DrawItem);
-            this.lstKisi.SelectedIndexChanged += new System.EventHandler(this.lstKisi_SelectedIndexChanged);
             // 
             // txtUzmanlik
             // 
             this.txtUzmanlik.Location = new System.Drawing.Point(112, 122);
             this.txtUzmanlik.Name = "txtUzmanlik";
             this.txtUzmanlik.Size = new System.Drawing.Size(104, 20);
-            this.txtUzmanlik.TabIndex = 4;
-            this.txtUzmanlik.TextChanged += new System.EventHandler(this.textBoxChangeProgressBar);
+            this.txtUzmanlik.TabIndex = 8;
+            this.txtUzmanlik.Leave += new System.EventHandler(this.txtAd_Leave);
             // 
             // lblUzmanlik
             // 
@@ -141,35 +139,86 @@
             this.lblUzmanlik.TabIndex = 9;
             this.lblUzmanlik.Text = "Uzmanlık";
             // 
-            // cbAktif
+            // chkAktif
             // 
-            this.cbAktif.AutoSize = true;
-            this.cbAktif.Checked = true;
-            this.cbAktif.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbAktif.Location = new System.Drawing.Point(112, 165);
-            this.cbAktif.Name = "cbAktif";
-            this.cbAktif.Size = new System.Drawing.Size(47, 17);
-            this.cbAktif.TabIndex = 10;
-            this.cbAktif.Text = "Aktif";
-            this.cbAktif.UseVisualStyleBackColor = true;
+            this.chkAktif.AutoSize = true;
+            this.chkAktif.Checked = true;
+            this.chkAktif.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAktif.Location = new System.Drawing.Point(112, 152);
+            this.chkAktif.Name = "chkAktif";
+            this.chkAktif.Size = new System.Drawing.Size(47, 17);
+            this.chkAktif.TabIndex = 10;
+            this.chkAktif.Text = "Aktif";
+            this.chkAktif.UseVisualStyleBackColor = true;
             // 
-            // lstWKisi
+            // pnlCinsiyet
             // 
-            this.lstWKisi.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.pnlCinsiyet.Controls.Add(this.rbDiger);
+            this.pnlCinsiyet.Controls.Add(this.rdbCinsiyetErkek);
+            this.pnlCinsiyet.Controls.Add(this.rdbCinsiyetKadin);
+            this.pnlCinsiyet.Location = new System.Drawing.Point(222, 175);
+            this.pnlCinsiyet.Name = "pnlCinsiyet";
+            this.pnlCinsiyet.Size = new System.Drawing.Size(186, 25);
+            this.pnlCinsiyet.TabIndex = 14;
+            // 
+            // rbDiger
+            // 
+            this.rbDiger.AutoSize = true;
+            this.rbDiger.Location = new System.Drawing.Point(130, 3);
+            this.rbDiger.Name = "rbDiger";
+            this.rbDiger.Size = new System.Drawing.Size(50, 17);
+            this.rbDiger.TabIndex = 16;
+            this.rbDiger.TabStop = true;
+            this.rbDiger.Tag = "2";
+            this.rbDiger.Text = "Diğer";
+            this.rbDiger.UseVisualStyleBackColor = true;
+            // 
+            // rdbCinsiyetErkek
+            // 
+            this.rdbCinsiyetErkek.AutoSize = true;
+            this.rdbCinsiyetErkek.Location = new System.Drawing.Point(58, 3);
+            this.rdbCinsiyetErkek.Name = "rdbCinsiyetErkek";
+            this.rdbCinsiyetErkek.Size = new System.Drawing.Size(53, 17);
+            this.rdbCinsiyetErkek.TabIndex = 15;
+            this.rdbCinsiyetErkek.TabStop = true;
+            this.rdbCinsiyetErkek.Tag = "1";
+            this.rdbCinsiyetErkek.Text = "Erkek";
+            this.rdbCinsiyetErkek.UseVisualStyleBackColor = true;
+            // 
+            // rdbCinsiyetKadin
+            // 
+            this.rdbCinsiyetKadin.AutoSize = true;
+            this.rdbCinsiyetKadin.Location = new System.Drawing.Point(3, 3);
+            this.rdbCinsiyetKadin.Name = "rdbCinsiyetKadin";
+            this.rdbCinsiyetKadin.Size = new System.Drawing.Size(52, 17);
+            this.rdbCinsiyetKadin.TabIndex = 14;
+            this.rdbCinsiyetKadin.TabStop = true;
+            this.rdbCinsiyetKadin.Tag = "0";
+            this.rdbCinsiyetKadin.Text = "Kadın";
+            this.rdbCinsiyetKadin.UseVisualStyleBackColor = true;
+            // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader5,
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4});
-            this.lstWKisi.FullRowSelect = true;
-            this.lstWKisi.Location = new System.Drawing.Point(12, 256);
-            this.lstWKisi.Name = "lstWKisi";
-            this.lstWKisi.Size = new System.Drawing.Size(484, 158);
-            this.lstWKisi.SmallImageList = this.ımageList1;
-            this.lstWKisi.TabIndex = 11;
-            this.lstWKisi.UseCompatibleStateImageBehavior = false;
-            this.lstWKisi.View = System.Windows.Forms.View.Details;
-            this.lstWKisi.SelectedIndexChanged += new System.EventHandler(this.lstWKisi_SelectedIndexChanged);
-            this.lstWKisi.DoubleClick += new System.EventHandler(this.lstWKisi_DoubleClick);
+            this.listView1.FullRowSelect = true;
+            this.listView1.LargeImageList = this.imageList1;
+            this.listView1.Location = new System.Drawing.Point(12, 204);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(396, 97);
+            this.listView1.SmallImageList = this.imageList2;
+            this.listView1.TabIndex = 15;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "";
             // 
             // columnHeader1
             // 
@@ -187,56 +236,69 @@
             // 
             this.columnHeader4.Text = "Uzmanlık";
             // 
-            // ımageList1
+            // imageList1
             // 
-            this.ımageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.ımageList1.ImageSize = new System.Drawing.Size(16, 16);
-            this.ımageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "plastic_model_3XN_icon.ico");
+            this.imageList1.Images.SetKeyName(1, "akrep.png");
+            this.imageList1.Images.SetKeyName(2, "aslan.png");
+            this.imageList1.Images.SetKeyName(3, "balik.png");
             // 
-            // pctBox
+            // imageList2
             // 
-            this.pctBox.Location = new System.Drawing.Point(272, 24);
-            this.pctBox.Name = "pctBox";
-            this.pctBox.Size = new System.Drawing.Size(224, 158);
-            this.pctBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pctBox.TabIndex = 12;
-            this.pctBox.TabStop = false;
-            // 
-            // btnResimYukle
-            // 
-            this.btnResimYukle.Location = new System.Drawing.Point(272, 198);
-            this.btnResimYukle.Name = "btnResimYukle";
-            this.btnResimYukle.Size = new System.Drawing.Size(224, 32);
-            this.btnResimYukle.TabIndex = 13;
-            this.btnResimYukle.Text = "Resim Yükle";
-            this.btnResimYukle.UseVisualStyleBackColor = true;
-            this.btnResimYukle.Click += new System.EventHandler(this.btnResimYukle_Click);
+            this.imageList2.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList2.ImageSize = new System.Drawing.Size(32, 32);
+            this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "*.jpg | *.png";
+            this.openFileDialog1.InitialDirectory = "c:\\";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Location = new System.Drawing.Point(225, 24);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(183, 118);
+            this.pictureBox1.TabIndex = 16;
+            this.pictureBox1.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(225, 149);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(183, 23);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "Resim Yükle";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 434);
+            this.progressBar1.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.progressBar1.Location = new System.Drawing.Point(12, 319);
+            this.progressBar1.MarqueeAnimationSpeed = 0;
+            this.progressBar1.Maximum = 5;
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(484, 34);
-            this.progressBar1.Step = 5;
-            this.progressBar1.TabIndex = 14;
+            this.progressBar1.Size = new System.Drawing.Size(396, 23);
+            this.progressBar1.TabIndex = 18;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(509, 555);
+            this.ClientSize = new System.Drawing.Size(426, 370);
             this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.btnResimYukle);
-            this.Controls.Add(this.pctBox);
-            this.Controls.Add(this.lstWKisi);
-            this.Controls.Add(this.cbAktif);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.pnlCinsiyet);
+            this.Controls.Add(this.chkAktif);
             this.Controls.Add(this.lblUzmanlik);
             this.Controls.Add(this.txtUzmanlik);
-            this.Controls.Add(this.lstKisi);
             this.Controls.Add(this.btnEkle);
             this.Controls.Add(this.txtKimlikNo);
             this.Controls.Add(this.txtSoyad);
@@ -247,7 +309,10 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.pctBox)).EndInit();
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.pnlCinsiyet.ResumeLayout(false);
+            this.pnlCinsiyet.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -262,19 +327,24 @@
         private System.Windows.Forms.TextBox txtSoyad;
         private System.Windows.Forms.TextBox txtKimlikNo;
         private System.Windows.Forms.Button btnEkle;
-        private System.Windows.Forms.ListBox lstKisi;
         private System.Windows.Forms.TextBox txtUzmanlik;
         private System.Windows.Forms.Label lblUzmanlik;
-        private System.Windows.Forms.CheckBox cbAktif;
-        private System.Windows.Forms.ListView lstWKisi;
+        private System.Windows.Forms.CheckBox chkAktif;
+        private System.Windows.Forms.Panel pnlCinsiyet;
+        private System.Windows.Forms.RadioButton rdbCinsiyetErkek;
+        private System.Windows.Forms.RadioButton rdbCinsiyetKadin;
+        private System.Windows.Forms.RadioButton rbDiger;
+        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.PictureBox pctBox;
-        private System.Windows.Forms.Button btnResimYukle;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.ImageList ımageList1;
+        private System.Windows.Forms.ImageList imageList2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
