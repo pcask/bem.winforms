@@ -39,13 +39,18 @@
             this.lstKisi = new System.Windows.Forms.ListBox();
             this.txtUzmanlik = new System.Windows.Forms.TextBox();
             this.lblUzmanlik = new System.Windows.Forms.Label();
-            this.chkAktif = new System.Windows.Forms.CheckBox();
-            this.pnlCinsiyet = new System.Windows.Forms.Panel();
-            this.rdbCinsiyetErkek = new System.Windows.Forms.RadioButton();
-            this.rdbCinsiyetKadin = new System.Windows.Forms.RadioButton();
-            this.rbDiger = new System.Windows.Forms.RadioButton();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.pnlCinsiyet.SuspendLayout();
+            this.cbAktif = new System.Windows.Forms.CheckBox();
+            this.lstWKisi = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pctBox = new System.Windows.Forms.PictureBox();
+            this.btnResimYukle = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.ımageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            ((System.ComponentModel.ISupportInitialize)(this.pctBox)).BeginInit();
             this.SuspendLayout();
             // 
             // lblAd
@@ -80,27 +85,30 @@
             this.txtAd.Location = new System.Drawing.Point(112, 24);
             this.txtAd.Name = "txtAd";
             this.txtAd.Size = new System.Drawing.Size(104, 20);
-            this.txtAd.TabIndex = 3;
+            this.txtAd.TabIndex = 1;
+            this.txtAd.TextChanged += new System.EventHandler(this.txtAd_TextChanged);
             // 
             // txtSoyad
             // 
             this.txtSoyad.Location = new System.Drawing.Point(112, 55);
             this.txtSoyad.Name = "txtSoyad";
             this.txtSoyad.Size = new System.Drawing.Size(104, 20);
-            this.txtSoyad.TabIndex = 4;
+            this.txtSoyad.TabIndex = 2;
+            this.txtSoyad.TextChanged += new System.EventHandler(this.txtSoyad_TextChanged);
             // 
             // txtKimlikNo
             // 
             this.txtKimlikNo.Location = new System.Drawing.Point(112, 86);
             this.txtKimlikNo.Name = "txtKimlikNo";
             this.txtKimlikNo.Size = new System.Drawing.Size(104, 20);
-            this.txtKimlikNo.TabIndex = 5;
+            this.txtKimlikNo.TabIndex = 3;
+            this.txtKimlikNo.TextChanged += new System.EventHandler(this.txtKimlikNo_TextChanged);
             // 
             // btnEkle
             // 
-            this.btnEkle.Location = new System.Drawing.Point(112, 226);
+            this.btnEkle.Location = new System.Drawing.Point(112, 198);
             this.btnEkle.Name = "btnEkle";
-            this.btnEkle.Size = new System.Drawing.Size(104, 23);
+            this.btnEkle.Size = new System.Drawing.Size(104, 32);
             this.btnEkle.TabIndex = 6;
             this.btnEkle.Text = "Kaydet";
             this.btnEkle.UseVisualStyleBackColor = true;
@@ -109,10 +117,11 @@
             // lstKisi
             // 
             this.lstKisi.FormattingEnabled = true;
-            this.lstKisi.Location = new System.Drawing.Point(236, 23);
+            this.lstKisi.Location = new System.Drawing.Point(12, 487);
             this.lstKisi.Name = "lstKisi";
-            this.lstKisi.Size = new System.Drawing.Size(260, 225);
+            this.lstKisi.Size = new System.Drawing.Size(484, 56);
             this.lstKisi.TabIndex = 7;
+            this.lstKisi.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lstKisi_DrawItem);
             this.lstKisi.SelectedIndexChanged += new System.EventHandler(this.lstKisi_SelectedIndexChanged);
             // 
             // txtUzmanlik
@@ -120,7 +129,8 @@
             this.txtUzmanlik.Location = new System.Drawing.Point(112, 122);
             this.txtUzmanlik.Name = "txtUzmanlik";
             this.txtUzmanlik.Size = new System.Drawing.Size(104, 20);
-            this.txtUzmanlik.TabIndex = 8;
+            this.txtUzmanlik.TabIndex = 4;
+            this.txtUzmanlik.TextChanged += new System.EventHandler(this.txtUzmanlik_TextChanged);
             // 
             // lblUzmanlik
             // 
@@ -131,77 +141,99 @@
             this.lblUzmanlik.TabIndex = 9;
             this.lblUzmanlik.Text = "Uzmanlık";
             // 
-            // chkAktif
+            // cbAktif
             // 
-            this.chkAktif.AutoSize = true;
-            this.chkAktif.Checked = true;
-            this.chkAktif.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAktif.Location = new System.Drawing.Point(112, 189);
-            this.chkAktif.Name = "chkAktif";
-            this.chkAktif.Size = new System.Drawing.Size(47, 17);
-            this.chkAktif.TabIndex = 10;
-            this.chkAktif.Text = "Aktif";
-            this.chkAktif.UseVisualStyleBackColor = true;
+            this.cbAktif.AutoSize = true;
+            this.cbAktif.Checked = true;
+            this.cbAktif.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbAktif.Location = new System.Drawing.Point(112, 165);
+            this.cbAktif.Name = "cbAktif";
+            this.cbAktif.Size = new System.Drawing.Size(47, 17);
+            this.cbAktif.TabIndex = 10;
+            this.cbAktif.Text = "Aktif";
+            this.cbAktif.UseVisualStyleBackColor = true;
             // 
-            // pnlCinsiyet
+            // lstWKisi
             // 
-            this.pnlCinsiyet.Controls.Add(this.rbDiger);
-            this.pnlCinsiyet.Controls.Add(this.rdbCinsiyetErkek);
-            this.pnlCinsiyet.Controls.Add(this.rdbCinsiyetKadin);
-            this.pnlCinsiyet.Location = new System.Drawing.Point(39, 158);
-            this.pnlCinsiyet.Name = "pnlCinsiyet";
-            this.pnlCinsiyet.Size = new System.Drawing.Size(186, 25);
-            this.pnlCinsiyet.TabIndex = 14;
+            this.lstWKisi.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
+            this.lstWKisi.FullRowSelect = true;
+            this.lstWKisi.Location = new System.Drawing.Point(12, 256);
+            this.lstWKisi.Name = "lstWKisi";
+            this.lstWKisi.Size = new System.Drawing.Size(484, 158);
+            this.lstWKisi.SmallImageList = this.ımageList1;
+            this.lstWKisi.TabIndex = 11;
+            this.lstWKisi.UseCompatibleStateImageBehavior = false;
+            this.lstWKisi.View = System.Windows.Forms.View.Details;
+            this.lstWKisi.SelectedIndexChanged += new System.EventHandler(this.lstWKisi_SelectedIndexChanged);
+            this.lstWKisi.DoubleClick += new System.EventHandler(this.lstWKisi_DoubleClick);
             // 
-            // rdbCinsiyetErkek
+            // columnHeader1
             // 
-            this.rdbCinsiyetErkek.AutoSize = true;
-            this.rdbCinsiyetErkek.Location = new System.Drawing.Point(58, 3);
-            this.rdbCinsiyetErkek.Name = "rdbCinsiyetErkek";
-            this.rdbCinsiyetErkek.Size = new System.Drawing.Size(53, 17);
-            this.rdbCinsiyetErkek.TabIndex = 15;
-            this.rdbCinsiyetErkek.TabStop = true;
-            this.rdbCinsiyetErkek.Tag = "1";
-            this.rdbCinsiyetErkek.Text = "Erkek";
-            this.rdbCinsiyetErkek.UseVisualStyleBackColor = true;
+            this.columnHeader1.Text = "Ad";
             // 
-            // rdbCinsiyetKadin
+            // columnHeader2
             // 
-            this.rdbCinsiyetKadin.AutoSize = true;
-            this.rdbCinsiyetKadin.Location = new System.Drawing.Point(3, 3);
-            this.rdbCinsiyetKadin.Name = "rdbCinsiyetKadin";
-            this.rdbCinsiyetKadin.Size = new System.Drawing.Size(52, 17);
-            this.rdbCinsiyetKadin.TabIndex = 14;
-            this.rdbCinsiyetKadin.TabStop = true;
-            this.rdbCinsiyetKadin.Tag = "0";
-            this.rdbCinsiyetKadin.Text = "Kadın";
-            this.rdbCinsiyetKadin.UseVisualStyleBackColor = true;
+            this.columnHeader2.Text = "Soyad";
             // 
-            // rbDiger
+            // columnHeader3
             // 
-            this.rbDiger.AutoSize = true;
-            this.rbDiger.Location = new System.Drawing.Point(130, 3);
-            this.rbDiger.Name = "rbDiger";
-            this.rbDiger.Size = new System.Drawing.Size(50, 17);
-            this.rbDiger.TabIndex = 16;
-            this.rbDiger.TabStop = true;
-            this.rbDiger.Tag = "2";
-            this.rbDiger.Text = "Diğer";
-            this.rbDiger.UseVisualStyleBackColor = true;
+            this.columnHeader3.Text = "T.C. Kimlik No";
             // 
-            // timer1
+            // columnHeader4
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.columnHeader4.Text = "Uzmanlık";
+            // 
+            // pctBox
+            // 
+            this.pctBox.Location = new System.Drawing.Point(272, 24);
+            this.pctBox.Name = "pctBox";
+            this.pctBox.Size = new System.Drawing.Size(224, 158);
+            this.pctBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pctBox.TabIndex = 12;
+            this.pctBox.TabStop = false;
+            // 
+            // btnResimYukle
+            // 
+            this.btnResimYukle.Location = new System.Drawing.Point(272, 198);
+            this.btnResimYukle.Name = "btnResimYukle";
+            this.btnResimYukle.Size = new System.Drawing.Size(224, 32);
+            this.btnResimYukle.TabIndex = 13;
+            this.btnResimYukle.Text = "Resim Yükle";
+            this.btnResimYukle.UseVisualStyleBackColor = true;
+            this.btnResimYukle.Click += new System.EventHandler(this.btnResimYukle_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // ımageList1
+            // 
+            this.ımageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.ımageList1.ImageSize = new System.Drawing.Size(16, 16);
+            this.ımageList1.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(12, 434);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(484, 34);
+            this.progressBar1.Step = 5;
+            this.progressBar1.TabIndex = 14;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(508, 265);
-            this.Controls.Add(this.pnlCinsiyet);
-            this.Controls.Add(this.chkAktif);
+            this.ClientSize = new System.Drawing.Size(509, 555);
+            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.btnResimYukle);
+            this.Controls.Add(this.pctBox);
+            this.Controls.Add(this.lstWKisi);
+            this.Controls.Add(this.cbAktif);
             this.Controls.Add(this.lblUzmanlik);
             this.Controls.Add(this.txtUzmanlik);
             this.Controls.Add(this.lstKisi);
@@ -215,9 +247,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.pnlCinsiyet.ResumeLayout(false);
-            this.pnlCinsiyet.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pctBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -235,12 +265,17 @@
         private System.Windows.Forms.ListBox lstKisi;
         private System.Windows.Forms.TextBox txtUzmanlik;
         private System.Windows.Forms.Label lblUzmanlik;
-        private System.Windows.Forms.CheckBox chkAktif;
-        private System.Windows.Forms.Panel pnlCinsiyet;
-        private System.Windows.Forms.RadioButton rdbCinsiyetErkek;
-        private System.Windows.Forms.RadioButton rdbCinsiyetKadin;
-        private System.Windows.Forms.RadioButton rbDiger;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.CheckBox cbAktif;
+        private System.Windows.Forms.ListView lstWKisi;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.PictureBox pctBox;
+        private System.Windows.Forms.Button btnResimYukle;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ImageList ımageList1;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 

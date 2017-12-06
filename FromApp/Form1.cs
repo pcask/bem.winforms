@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -22,46 +21,42 @@ namespace FromApp
 
         private void btnEkle_Click(object sender, EventArgs e)
         {
-            var kisi = (isUpdate) ? (Kisi)lstKisi.SelectedItem : new Kisi();
+            // ListBox için yazılan kontrol
+            //var kisi = (isUpdate) ? (Kisi)lstKisi.SelectedItem : new Kisi();
+            //kisi.Ad = txtAd.Text;
+            //kisi.Soyad = txtSoyad.Text;
+            //kisi.TcKimlikNo = txtKimlikNo.Text;
+            //kisi.Uzmanlik = txtUzmanlik.Text;
 
-            kisi.Ad = txtAd.Text;
-            kisi.Soyad = txtSoyad.Text;
-            kisi.TcKimlikNo = txtKimlikNo.Text;
-            kisi.Uzmanlik = txtUzmanlik.Text;
-            kisi.IsActive = chkAktif.Checked;
-
-            //if (rdbCinsiyetKadin.Checked)
-            //{
-            //    kisi.Cinsiyet = Cinsiyet.Kadın;
-            //}
-            //else if (rdbCinsiyetErkek.Checked)
-            //{
-            //    kisi.Cinsiyet = Cinsiyet.Erkek;
-            //}
-
-            foreach (Control item in pnlCinsiyet.Controls)
+            if (progressBar1.Value != 100)
             {
-                if(!(item is RadioButton))
-                {
-                    continue;
-                }
-
-                var rb = item as RadioButton;
-
-                if (rb.Checked)
-                {
-                    kisi.Cinsiyet = (Cinsiyet)int.Parse(rb.Tag.ToString());
-                }
+                MessageBox.Show("Lütfen Bütün Alanları Doldurunuz!!");
+                return;
             }
 
+            ListViewItem li = new ListViewItem(new string[] { "", txtAd.Text, txtSoyad.Text, txtKimlikNo.Text, txtUzmanlik.Text });
+
+            ımageList1.Images.Add(pctBox.Image);
+
+            li.ImageIndex = ımageList1.Images.Count - 1;
+
+            // ListBox için yazılan kontrol
+            //if (!isUpdate)
+            //{
+            //    lstKisi.Items.Add(kisi);
+            //}
+            //else
+            //{
+            //    lstKisi.Items[lstKisi.SelectedIndex] = kisi;
+            //}
 
             if (!isUpdate)
             {
-                lstKisi.Items.Add(kisi);
+                lstWKisi.Items.Add(li);
             }
             else
             {
-                lstKisi.Items[lstKisi.SelectedIndex] = kisi;
+                lstWKisi.Items[selectedRowIndex] = li;
             }
 
             txtAd.Text = "";
@@ -69,85 +64,129 @@ namespace FromApp
             txtKimlikNo.Text = "";
             txtUzmanlik.Text = "";
 
-            chkAktif.Checked = true;
-
-            rdbCinsiyetErkek.Checked = false;
-            rdbCinsiyetKadin.Checked = false;
-
+            pctBox.Image = null;
+            progressBar1.Value =0;
             isUpdate = false;
-        }
-
-        private void lstKisi_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            //if (e.Index < 0) return;
-            ////if the item state is selected them change the back color 
-            //if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
-            //    e = new DrawItemEventArgs(e.Graphics,
-            //                              e.Font,
-            //                              e.Bounds,
-            //                              e.Index,
-            //                              e.State ^ DrawItemState.Selected,
-            //                              e.ForeColor,
-            //                              Color.Yellow);//Choose the color
-
-            //// Draw the background of the ListBox control for each item.
-            //e.DrawBackground();
-            //// Draw the current item text
-
-            //var  box = (ListBox)sender;
-
-            //var selectedItem = box.SelectedItem as Kisi;
-
-            //var brush = (!(selectedItem is null) && selectedItem.IsActive) ? Brushes.Black : Brushes.Gray;
-
-            //e.Graphics.DrawString(((ListBox)sender).Items[e.Index].ToString(), e.Font, brush, e.Bounds, StringFormat.GenericDefault);
-            //// If the ListBox has focus, draw a focus rectangle around the selected item.
-            //e.DrawFocusRectangle();
-
-
-            //Debug.WriteLine(e.Index);
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void lstKisi_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var kisi = ((ListBox)sender).SelectedItem as Kisi;
-
-            if(kisi is null)
+            if (lstKisi.SelectedItem is null)
             {
                 return;
             }
 
-            txtAd.Text = kisi.Ad;
-            txtSoyad.Text = kisi.Soyad;
-            txtKimlikNo.Text = kisi.TcKimlikNo;
-            txtUzmanlik.Text = kisi.Uzmanlik;
+            Kisi gelenKisi = lstKisi.SelectedItem as Kisi;
 
-            chkAktif.Checked = kisi.IsActive;
-
-
-            if(kisi.Cinsiyet == Cinsiyet.Kadın)
-            {
-                rdbCinsiyetKadin.Checked = true;
-            }
-            else if (kisi.Cinsiyet == Cinsiyet.Erkek)
-            {
-                rdbCinsiyetErkek.Checked = true;
-            } else if(kisi.Cinsiyet == Cinsiyet.Diger)
-            {
-                rbDiger.Checked = true;
-            }
+            txtAd.Text = gelenKisi.Ad;
+            txtSoyad.Text = gelenKisi.Soyad;
+            txtKimlikNo.Text = gelenKisi.TcKimlikNo;
+            txtUzmanlik.Text = gelenKisi.Uzmanlik;
 
             isUpdate = true;
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void lstKisi_DrawItem(object sender, DrawItemEventArgs e)
         {
-            txtAd.Text += "1"; 
+            //if (!cbAktif.Checked)
+            //{
+            //    e.DrawBackground();
+            //    Graphics g = e.Graphics;
+
+            //    g.FillRectangle(new SolidBrush(Color.Silver), e.Bounds);
+
+            //    e.DrawFocusRectangle();
+            //}
+        }
+
+        private void lstWKisi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //if (lstWKisi.SelectedItems is null)
+            //{
+            //    return;
+            //}
+
+            //txtAd.Text = lstWKisi.SelectedItems[0].Text;
+            //txtSoyad.Text = lstWKisi.SelectedItems[0].SubItems[0].Text;
+            //txtKimlikNo.Text = lstWKisi.SelectedItems[0].SubItems[1].Text;
+            //txtUzmanlik.Text = lstWKisi.SelectedItems[0].SubItems[2].Text;
+
+            //isUpdate = true;
+        }
+
+        private int selectedRowIndex;
+
+        private void lstWKisi_DoubleClick(object sender, EventArgs e)
+        {
+            ListView lv = sender as ListView;
+            //ListView lv = (ListView)sender;
+
+            if (lv is null)
+            {
+                return;
+            }
+
+            ListViewItem selectedItem = lv.SelectedItems[0];
+
+            txtAd.Text = selectedItem.SubItems[1].Text;
+            txtSoyad.Text = selectedItem.SubItems[2].Text;
+            txtKimlikNo.Text = selectedItem.SubItems[3].Text;
+            txtUzmanlik.Text = selectedItem.SubItems[4].Text;
+
+            pctBox.Image = ımageList1.Images[selectedItem.ImageIndex];
+            progressBar1.Value += 20;
+
+            isUpdate = true;
+
+            selectedRowIndex = lv.SelectedIndices[0];
+        }
+
+        private void btnResimYukle_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Bitmap img = new Bitmap(openFileDialog1.FileName);
+
+                pctBox.Image = img;
+
+                progressBar1.Value += 20;
+            }
+        }
+
+        private void txtAd_TextChanged(object sender, EventArgs e)
+        {
+            textBoxChangeProgressBar(sender);
+        }
+
+        private void txtSoyad_TextChanged(object sender, EventArgs e)
+        {
+            textBoxChangeProgressBar(sender);
+        }
+
+        private void txtKimlikNo_TextChanged(object sender, EventArgs e)
+        {
+            textBoxChangeProgressBar(sender);
+        }
+
+        private void txtUzmanlik_TextChanged(object sender, EventArgs e)
+        {
+            textBoxChangeProgressBar(sender);
+        }
+
+        private void textBoxChangeProgressBar(object sender)
+        {
+            TextBox txt = sender as TextBox;
+            if (txt.Tag == null)
+            {
+                progressBar1.Value += 20;
+                txt.Tag = "dolu";
+            }
+
+            if (txt.Text == "")
+            {
+                txt.Tag = null;
+                progressBar1.Value -= 20;
+            }
         }
     }
 }
