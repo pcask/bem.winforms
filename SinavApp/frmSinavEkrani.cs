@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,31 @@ namespace SinavApp
         public frmSinavEkrani()
         {
             InitializeComponent();
+        }
+
+        private void frmSinavEkrani_Load(object sender, EventArgs e)
+        {
+            Form frmGiris = this.Owner as frmGiris;
+
+            lblAdSoyad.Text = frmGiris.Controls.Find("txtAdSoyad", true)[0].Text;
+
+
+            string sinavYol = frmGiris.Controls.Find("lblSinavDosyaYolu", true)[0].Text;
+
+            using (StreamReader st = new StreamReader(sinavYol))
+            {
+                lblSinavAdi.Text = st.ReadLine();
+                lblSinavAciklama.Text = st.ReadLine();
+
+                do
+                {
+
+
+
+
+                } while (st.ReadLine() != null);
+
+            }
         }
     }
 }
