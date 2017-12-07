@@ -16,6 +16,7 @@ namespace SinavApp
         public frmGiris()
         {
             InitializeComponent();
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -59,8 +60,7 @@ namespace SinavApp
                 return;
             }
 
-            var frmSinavEkrani = new frmSinavEkrani();
-            frmSinavEkrani.Owner = this;
+            var frmSinavEkrani = new frmSinavEkrani(txtAdSoyad.Text,lblSinavDosyaYolu.Text);
             this.Hide();
 
             frmSinavEkrani.ShowDialog();
