@@ -30,6 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.renkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kırmızıToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.yeşilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.maviToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.diğreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
             this.btnFontSec = new System.Windows.Forms.Button();
             this.btnSolaYasla = new System.Windows.Forms.Button();
@@ -43,14 +49,8 @@
             this.kaydetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.renkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.kırmızıToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.yeşilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.maviToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.diğreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuDosya.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            this.menuDosya.SuspendLayout();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -61,6 +61,52 @@
             this.richTextBox1.Size = new System.Drawing.Size(461, 402);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.renkToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(101, 26);
+            // 
+            // renkToolStripMenuItem
+            // 
+            this.renkToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.kırmızıToolStripMenuItem,
+            this.yeşilToolStripMenuItem,
+            this.maviToolStripMenuItem,
+            this.diğreToolStripMenuItem});
+            this.renkToolStripMenuItem.Name = "renkToolStripMenuItem";
+            this.renkToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.renkToolStripMenuItem.Text = "Renk";
+            // 
+            // kırmızıToolStripMenuItem
+            // 
+            this.kırmızıToolStripMenuItem.Name = "kırmızıToolStripMenuItem";
+            this.kırmızıToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.kırmızıToolStripMenuItem.Text = "Kırmızı";
+            this.kırmızıToolStripMenuItem.Click += new System.EventHandler(this.kırmızıToolStripMenuItem_Click);
+            // 
+            // yeşilToolStripMenuItem
+            // 
+            this.yeşilToolStripMenuItem.Name = "yeşilToolStripMenuItem";
+            this.yeşilToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.yeşilToolStripMenuItem.Text = "Yeşil";
+            this.yeşilToolStripMenuItem.Click += new System.EventHandler(this.yeşilToolStripMenuItem_Click);
+            // 
+            // maviToolStripMenuItem
+            // 
+            this.maviToolStripMenuItem.Name = "maviToolStripMenuItem";
+            this.maviToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.maviToolStripMenuItem.Text = "Mavi";
+            this.maviToolStripMenuItem.Click += new System.EventHandler(this.maviToolStripMenuItem_Click);
+            // 
+            // diğreToolStripMenuItem
+            // 
+            this.diğreToolStripMenuItem.Name = "diğreToolStripMenuItem";
+            this.diğreToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.diğreToolStripMenuItem.Text = "Diğer...";
+            this.diğreToolStripMenuItem.Click += new System.EventHandler(this.diğreToolStripMenuItem_Click);
             // 
             // btnFontSec
             // 
@@ -149,52 +195,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.renkToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 48);
-            // 
-            // renkToolStripMenuItem
-            // 
-            this.renkToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.kırmızıToolStripMenuItem,
-            this.yeşilToolStripMenuItem,
-            this.maviToolStripMenuItem,
-            this.diğreToolStripMenuItem});
-            this.renkToolStripMenuItem.Name = "renkToolStripMenuItem";
-            this.renkToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.renkToolStripMenuItem.Text = "Renk";
-            // 
-            // kırmızıToolStripMenuItem
-            // 
-            this.kırmızıToolStripMenuItem.Name = "kırmızıToolStripMenuItem";
-            this.kırmızıToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.kırmızıToolStripMenuItem.Text = "Kırmızı";
-            this.kırmızıToolStripMenuItem.Click += new System.EventHandler(this.kırmızıToolStripMenuItem_Click);
-            // 
-            // yeşilToolStripMenuItem
-            // 
-            this.yeşilToolStripMenuItem.Name = "yeşilToolStripMenuItem";
-            this.yeşilToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.yeşilToolStripMenuItem.Text = "Yeşil";
-            this.yeşilToolStripMenuItem.Click += new System.EventHandler(this.yeşilToolStripMenuItem_Click);
-            // 
-            // maviToolStripMenuItem
-            // 
-            this.maviToolStripMenuItem.Name = "maviToolStripMenuItem";
-            this.maviToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.maviToolStripMenuItem.Text = "Mavi";
-            this.maviToolStripMenuItem.Click += new System.EventHandler(this.maviToolStripMenuItem_Click);
-            // 
-            // diğreToolStripMenuItem
-            // 
-            this.diğreToolStripMenuItem.Name = "diğreToolStripMenuItem";
-            this.diğreToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.diğreToolStripMenuItem.Text = "Diğer...";
-            this.diğreToolStripMenuItem.Click += new System.EventHandler(this.diğreToolStripMenuItem_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -211,9 +211,9 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.menuDosya.ResumeLayout(false);
             this.menuDosya.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
