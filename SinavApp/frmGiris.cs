@@ -43,5 +43,28 @@ namespace SinavApp
                 } while (!string.IsNullOrWhiteSpace(satir));
             }
         }
+
+        private void btnSinavSec_Click(object sender, EventArgs e)
+        {
+            if (DialogResult.OK == openFileDialog1.ShowDialog())
+            {
+                lblSinavDosyaYolu.Text = openFileDialog1.FileName;
+                lblSinavDosyaYolu.Visible = true;
+            }
+        }
+
+        private void btnDevamEt_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtAdSoyad.Text) && !string.IsNullOrWhiteSpace(lblSinavDosyaYolu.Text))
+            {
+                this.Hide();
+                frmSinavEkrani fse = new frmSinavEkrani();
+                fse.Show();
+            }
+            else
+            {
+                MessageBox.Show("Lütfen Bütün Alanları Doldurunuz!!!");
+            }
+        }
     }
 }
