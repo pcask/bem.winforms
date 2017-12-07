@@ -65,19 +65,16 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tBarMavi = new System.Windows.Forms.TrackBar();
-            this.tBarYesil = new System.Windows.Forms.TrackBar();
-            this.tBarKirmizi = new System.Windows.Forms.TrackBar();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.trackBar2 = new System.Windows.Forms.TrackBar();
+            this.trackBar3 = new System.Windows.Forms.TrackBar();
+            this.trackBar4 = new System.Windows.Forms.TrackBar();
             this.cmenuStyle.SuspendLayout();
             this.menuDosya.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tBarMavi)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tBarYesil)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tBarKirmizi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar4)).BeginInit();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -113,7 +110,7 @@
             this.toolStripSeparator2,
             this.diğerToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(125, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem1.Text = "Renk";
             // 
             // kırmızıToolStripMenuItem
@@ -152,14 +149,14 @@
             this.italikToolStripMenuItem,
             this.altçizgiliToolStripMenuItem});
             this.görünümToolStripMenuItem.Name = "görünümToolStripMenuItem";
-            this.görünümToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.görünümToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.görünümToolStripMenuItem.Text = "Görünüm";
             // 
             // kalınToolStripMenuItem
             // 
             this.kalınToolStripMenuItem.CheckOnClick = true;
             this.kalınToolStripMenuItem.Name = "kalınToolStripMenuItem";
-            this.kalınToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.kalınToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.kalınToolStripMenuItem.Text = "Kalın";
             this.kalınToolStripMenuItem.Click += new System.EventHandler(this.kalınToolStripMenuItem_Click);
             // 
@@ -167,7 +164,7 @@
             // 
             this.italikToolStripMenuItem.CheckOnClick = true;
             this.italikToolStripMenuItem.Name = "italikToolStripMenuItem";
-            this.italikToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.italikToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.italikToolStripMenuItem.Text = "İtalik";
             this.italikToolStripMenuItem.Click += new System.EventHandler(this.italikToolStripMenuItem_Click);
             // 
@@ -175,7 +172,7 @@
             // 
             this.altçizgiliToolStripMenuItem.CheckOnClick = true;
             this.altçizgiliToolStripMenuItem.Name = "altçizgiliToolStripMenuItem";
-            this.altçizgiliToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.altçizgiliToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.altçizgiliToolStripMenuItem.Text = "Altçizgili";
             this.altçizgiliToolStripMenuItem.Click += new System.EventHandler(this.altçizgiliToolStripMenuItem_Click);
             // 
@@ -187,7 +184,7 @@
             this.toolStripMenuItem4,
             this.toolStripTextBox1});
             this.boyutToolStripMenuItem.Name = "boyutToolStripMenuItem";
-            this.boyutToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.boyutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.boyutToolStripMenuItem.Text = "Boyut";
             // 
             // toolStripMenuItem2
@@ -222,26 +219,26 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(122, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // kesToolStripMenuItem
             // 
             this.kesToolStripMenuItem.Name = "kesToolStripMenuItem";
-            this.kesToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.kesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.kesToolStripMenuItem.Text = "Kes";
             this.kesToolStripMenuItem.Click += new System.EventHandler(this.kesToolStripMenuItem_Click);
             // 
             // kopyalaToolStripMenuItem
             // 
             this.kopyalaToolStripMenuItem.Name = "kopyalaToolStripMenuItem";
-            this.kopyalaToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.kopyalaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.kopyalaToolStripMenuItem.Text = "Kopyala";
             this.kopyalaToolStripMenuItem.Click += new System.EventHandler(this.kopyalaToolStripMenuItem_Click);
             // 
             // yapıştırToolStripMenuItem
             // 
             this.yapıştırToolStripMenuItem.Name = "yapıştırToolStripMenuItem";
-            this.yapıştırToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.yapıştırToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.yapıştırToolStripMenuItem.Text = "Yapıştır";
             this.yapıştırToolStripMenuItem.Click += new System.EventHandler(this.yapıştırToolStripMenuItem_Click);
             // 
@@ -348,12 +345,9 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.tBarMavi);
-            this.groupBox1.Controls.Add(this.tBarYesil);
-            this.groupBox1.Controls.Add(this.tBarKirmizi);
+            this.groupBox1.Controls.Add(this.trackBar4);
+            this.groupBox1.Controls.Add(this.trackBar3);
+            this.groupBox1.Controls.Add(this.trackBar2);
             this.groupBox1.Location = new System.Drawing.Point(501, 245);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(200, 168);
@@ -361,59 +355,32 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Renk";
             // 
-            // tBarMavi
+            // trackBar2
             // 
-            this.tBarMavi.Location = new System.Drawing.Point(51, 118);
-            this.tBarMavi.Maximum = 255;
-            this.tBarMavi.Name = "tBarMavi";
-            this.tBarMavi.Size = new System.Drawing.Size(104, 45);
-            this.tBarMavi.TabIndex = 2;
-            this.tBarMavi.Scroll += new System.EventHandler(this.RenkSec);
+            this.trackBar2.Location = new System.Drawing.Point(20, 19);
+            this.trackBar2.Maximum = 255;
+            this.trackBar2.Name = "trackBar2";
+            this.trackBar2.Size = new System.Drawing.Size(104, 45);
+            this.trackBar2.TabIndex = 0;
+            this.trackBar2.Scroll += new System.EventHandler(this.trackBar2_Scroll);
             // 
-            // tBarYesil
+            // trackBar3
             // 
-            this.tBarYesil.Location = new System.Drawing.Point(51, 67);
-            this.tBarYesil.Maximum = 255;
-            this.tBarYesil.Name = "tBarYesil";
-            this.tBarYesil.Size = new System.Drawing.Size(104, 45);
-            this.tBarYesil.TabIndex = 1;
-            this.tBarYesil.Scroll += new System.EventHandler(this.RenkSec);
+            this.trackBar3.Location = new System.Drawing.Point(20, 66);
+            this.trackBar3.Maximum = 255;
+            this.trackBar3.Name = "trackBar3";
+            this.trackBar3.Size = new System.Drawing.Size(104, 45);
+            this.trackBar3.TabIndex = 1;
+            this.trackBar3.Scroll += new System.EventHandler(this.trackBar2_Scroll);
             // 
-            // tBarKirmizi
+            // trackBar4
             // 
-            this.tBarKirmizi.Location = new System.Drawing.Point(51, 20);
-            this.tBarKirmizi.Maximum = 255;
-            this.tBarKirmizi.Name = "tBarKirmizi";
-            this.tBarKirmizi.Size = new System.Drawing.Size(104, 45);
-            this.tBarKirmizi.TabIndex = 0;
-            this.tBarKirmizi.Scroll += new System.EventHandler(this.RenkSec);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Kırmızı";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 77);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Yeşil";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 127);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(28, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Blue";
+            this.trackBar4.Location = new System.Drawing.Point(20, 117);
+            this.trackBar4.Maximum = 255;
+            this.trackBar4.Name = "trackBar4";
+            this.trackBar4.Size = new System.Drawing.Size(104, 45);
+            this.trackBar4.TabIndex = 2;
+            this.trackBar4.Scroll += new System.EventHandler(this.trackBar2_Scroll);
             // 
             // Form1
             // 
@@ -439,9 +406,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tBarMavi)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tBarYesil)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tBarKirmizi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -485,12 +452,9 @@
         private System.Windows.Forms.ToolStripMenuItem yapıştırToolStripMenuItem;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TrackBar tBarMavi;
-        private System.Windows.Forms.TrackBar tBarYesil;
-        private System.Windows.Forms.TrackBar tBarKirmizi;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TrackBar trackBar4;
+        private System.Windows.Forms.TrackBar trackBar3;
+        private System.Windows.Forms.TrackBar trackBar2;
     }
 }
 
