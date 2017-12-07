@@ -108,7 +108,7 @@ Etiam sed accumsan risus, vitae gravida ex. Donec ex risus, mollis quis pulvinar
 
         private void toolStripTextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(e.KeyChar == 13)
+            if (e.KeyChar == 13)
             {
                 richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont.FontFamily, float.Parse(((ToolStripTextBox)sender).Text));
             }
@@ -121,7 +121,7 @@ Etiam sed accumsan risus, vitae gravida ex. Donec ex risus, mollis quis pulvinar
 
         private void cmenuStyle_Closed(object sender, ToolStripDropDownClosedEventArgs e)
         {
-            if(string.IsNullOrWhiteSpace(toolStripTextBox1.Text))
+            if (string.IsNullOrWhiteSpace(toolStripTextBox1.Text))
             {
                 return;
             }
@@ -157,6 +157,14 @@ Etiam sed accumsan risus, vitae gravida ex. Donec ex risus, mollis quis pulvinar
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont.FontFamily, (sender as TrackBar).Value);
+        }
+
+
+        private void RenkSec(object sender, EventArgs e)
+        {
+            var color = Color.FromArgb(tBarKirmizi.Value, tBarYesil.Value, tBarMavi.Value);
+
+            richTextBox1.SelectionColor = color;
         }
     }
 }
