@@ -15,6 +15,8 @@ namespace SinavApp
     {
         public string AdSoyad { get; set; }
         public string SinavDosyaYolu { get; set; }
+        public int SinavSuresi { get; private set; }
+        public double SinavSuresiUyariYuzdesi { get; set; }
 
         public frmSinavEkrani()
         {
@@ -24,7 +26,7 @@ namespace SinavApp
             //this.lblAdSoyad.Text = frmGiris.txtAdSoyad.Text;
         }
 
-        public frmSinavEkrani(string adSoyad, string sinavDosyaYolu) :this()
+        public frmSinavEkrani(string adSoyad, string sinavDosyaYolu) : this()
         {
             AdSoyad = adSoyad;
             lblAdSoyad.Text = adSoyad;
@@ -34,36 +36,49 @@ namespace SinavApp
 
         private void frmSinavEkrani_Load(object sender, EventArgs e)
         {
-            using (var streamReader = new StreamReader(SinavDosyaYolu))
-            {
-                lblSinavAdi.Text = streamReader.ReadLine();
-                lblSinavAciklama.Text = streamReader.ReadLine();
-            }
-        }
-
-        private void frmSinavEkrani_Load(object sender, EventArgs e)
-        {
             Form frmGiris = this.Owner as frmGiris;
 
             lblAdSoyad.Text = frmGiris.Controls.Find("txtAdSoyad", true)[0].Text;
 
-
             string sinavYol = frmGiris.Controls.Find("lblSinavDosyaYolu", true)[0].Text;
+
+            Timer t = new Timer();
+            t.Tick += T_Tick;
+            t.Interval = 1;
+            t.Start();
 
             using (StreamReader st = new StreamReader(sinavYol))
             {
                 lblSinavAdi.Text = st.ReadLine();
                 lblSinavAciklama.Text = st.ReadLine();
+                SinavSuresi = int.Parse(st.ReadLine());
+                SinavSuresiUyariYuzdesi = SinavSuresi * 0.1;
 
                 do
                 {
-
-
-
 
                 } while (st.ReadLine() != null);
 
             }
         }
+
+        private void T_Tick(object sender, EventArgs e)
+        {
+            if (SinavSuresi > 0)
+            {
+                if (SinavSuresi <= SinavSuresiUyariYuzdesi)
+                    lblKalanZaman.ForeColor = Color.Red;
+
+                SinavSuresi--;
+
+                TimeSpan ts = TimeSpan.FromSeconds(SinavSuresi);
+                lblKalanZaman.Text = ts.ToString(@"hh\:mm\:ss");
+            }
+            else
+            {
+                ((Timer)sender).Stop();
+            }
+        }
+
     }
 }

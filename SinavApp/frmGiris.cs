@@ -63,6 +63,7 @@ namespace SinavApp
             var frmSinavEkrani = new frmSinavEkrani(txtAdSoyad.Text,lblSinavDosyaYolu.Text);
             this.Hide();
 
+            frmSinavEkrani.Owner = this;
             frmSinavEkrani.ShowDialog();
         }
     }
