@@ -60,14 +60,15 @@
             // 
             this.prgCevapOrani.Location = new System.Drawing.Point(12, 175);
             this.prgCevapOrani.Name = "prgCevapOrani";
-            this.prgCevapOrani.Size = new System.Drawing.Size(561, 23);
+            this.prgCevapOrani.Size = new System.Drawing.Size(680, 23);
             this.prgCevapOrani.TabIndex = 2;
             // 
             // pnlSorular
             // 
+            this.pnlSorular.AutoScroll = true;
             this.pnlSorular.Location = new System.Drawing.Point(12, 204);
             this.pnlSorular.Name = "pnlSorular";
-            this.pnlSorular.Size = new System.Drawing.Size(561, 241);
+            this.pnlSorular.Size = new System.Drawing.Size(680, 283);
             this.pnlSorular.TabIndex = 3;
             // 
             // lblKalanZaman
@@ -75,7 +76,7 @@
             this.lblKalanZaman.AutoSize = true;
             this.lblKalanZaman.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lblKalanZaman.ForeColor = System.Drawing.Color.Green;
-            this.lblKalanZaman.Location = new System.Drawing.Point(486, 13);
+            this.lblKalanZaman.Location = new System.Drawing.Point(558, 13);
             this.lblKalanZaman.Name = "lblKalanZaman";
             this.lblKalanZaman.Size = new System.Drawing.Size(87, 31);
             this.lblKalanZaman.TabIndex = 4;
@@ -84,7 +85,7 @@
             // lblAdSoyad
             // 
             this.lblAdSoyad.AutoSize = true;
-            this.lblAdSoyad.Location = new System.Drawing.Point(520, 61);
+            this.lblAdSoyad.Location = new System.Drawing.Point(592, 61);
             this.lblAdSoyad.Name = "lblAdSoyad";
             this.lblAdSoyad.Size = new System.Drawing.Size(53, 13);
             this.lblAdSoyad.TabIndex = 5;
@@ -95,7 +96,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(585, 457);
+            this.ClientSize = new System.Drawing.Size(700, 499);
             this.Controls.Add(this.lblAdSoyad);
             this.Controls.Add(this.lblKalanZaman);
             this.Controls.Add(this.pnlSorular);

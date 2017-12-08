@@ -54,11 +54,51 @@ namespace SinavApp
                 SinavSuresi = int.Parse(st.ReadLine());
                 SinavSuresiUyariYuzdesi = SinavSuresi * 0.1;
 
-                do
+                int gbX = 0;
+                int gbY = -210;
+                byte soruSayisi = 0;
+
+                string gelenSatir = "";
+                while (!string.IsNullOrWhiteSpace((gelenSatir = st.ReadLine())))
                 {
+                    soruSayisi++;
 
-                } while (st.ReadLine() != null);
+                    if (soruSayisi % 2 == 1)
+                    {
+                        gbY += 210;
+                        gbX = 0;
+                    }
+                    else
+                    {
+                        gbX += 340;
+                    }
 
+                    GroupBox gb = new GroupBox();
+                    gb.Width = 330;
+                    gb.Height = 200;
+                    gb.Location = new Point(gbX, gbY);
+                    pnlSorular.Controls.Add(gb);
+
+                    string [] items = gelenSatir.Split('|');
+
+                    Label lbl = new Label();
+                    lbl.Width = 330;
+                    lbl.Location = new Point(10, 10);
+                    lbl.AutoSize = true;
+                    lbl.Text = items[0];
+
+                    gb.Controls.Add(lbl);
+
+                    int rbY = lbl.Location.Y + lbl.PreferredHeight + 15;
+                    for (int i = 1; i < items.Length - 1; i++)
+                    {
+                        RadioButton rb = new RadioButton();
+                        rb.Text = items[i];
+                        rb.Location = new Point(10, rbY);
+                        rbY += 20;
+                        gb.Controls.Add(rb);
+                    }
+                }
             }
         }
 
@@ -75,10 +115,7 @@ namespace SinavApp
                 lblKalanZaman.Text = ts.ToString(@"hh\:mm\:ss");
             }
             else
-            {
                 ((Timer)sender).Stop();
-            }
         }
-
     }
 }
