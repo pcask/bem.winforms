@@ -44,7 +44,7 @@ namespace SinavApp
 
             Timer t = new Timer();
             t.Tick += T_Tick;
-            t.Interval = 1;
+            t.Interval = 1000;
             t.Start();
 
             using (StreamReader st = new StreamReader(sinavYol))
