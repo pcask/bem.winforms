@@ -90,7 +90,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(215, 156);
+            this.ClientSize = new System.Drawing.Size(504, 156);
             this.Controls.Add(this.btnDevamEt);
             this.Controls.Add(this.lblSinavDosyaYolu);
             this.Controls.Add(this.btnSinavSec);
