@@ -55,6 +55,7 @@
             this.txtAdSoyad.Name = "txtAdSoyad";
             this.txtAdSoyad.Size = new System.Drawing.Size(100, 20);
             this.txtAdSoyad.TabIndex = 3;
+            this.txtAdSoyad.Text = "Sezer Ayran";
             // 
             // btnSinavSec
             // 
@@ -71,8 +72,9 @@
             this.lblSinavDosyaYolu.AutoSize = true;
             this.lblSinavDosyaYolu.Location = new System.Drawing.Point(130, 66);
             this.lblSinavDosyaYolu.Name = "lblSinavDosyaYolu";
-            this.lblSinavDosyaYolu.Size = new System.Drawing.Size(0, 13);
+            this.lblSinavDosyaYolu.Size = new System.Drawing.Size(371, 13);
             this.lblSinavDosyaYolu.TabIndex = 5;
+            this.lblSinavDosyaYolu.Text = "C:\\Users\\SEZER\\source\\repos\\bem.winforms\\SinavApp\\Sinavlar\\sinav1.txt";
             // 
             // btnDevamEt
             // 

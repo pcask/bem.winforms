@@ -15,15 +15,19 @@ namespace SinavApp
     {
         public string AdSoyad { get; set; }
         public string SinavDosyaYolu { get; set; }
+        public string SinavAdi { get; set; }
         public int SinavSuresi { get; private set; }
         public double SinavSuresiUyariYuzdesi { get; set; }
+        public byte SoruSayisi { get; set; }
+        public byte VerilenCevap { get; set; }
+        public string CevaplarYol { get; set; }
+
+        Timer t;
+        byte[] soruCevapKontrol;
 
         public frmSinavEkrani()
         {
             InitializeComponent();
-
-            //var frmGiris = this.Owner as frmGiris;
-            //this.lblAdSoyad.Text = frmGiris.txtAdSoyad.Text;
         }
 
         public frmSinavEkrani(string adSoyad, string sinavDosyaYolu) : this()
@@ -42,28 +46,24 @@ namespace SinavApp
 
             string sinavYol = frmGiris.Controls.Find("lblSinavDosyaYolu", true)[0].Text;
 
-            Timer t = new Timer();
-            t.Tick += T_Tick;
-            t.Interval = 1000;
-            t.Start();
-
             using (StreamReader st = new StreamReader(sinavYol))
             {
-                lblSinavAdi.Text = st.ReadLine();
+                lblSinavAdi.Text = SinavAdi = st.ReadLine();
                 lblSinavAciklama.Text = st.ReadLine();
                 SinavSuresi = int.Parse(st.ReadLine());
+                SinavSuresi = 160;
                 SinavSuresiUyariYuzdesi = SinavSuresi * 0.1;
 
                 int gbX = 0;
                 int gbY = -210;
-                byte soruSayisi = 0;
+                SoruSayisi = 0;
 
                 string gelenSatir = "";
                 while (!string.IsNullOrWhiteSpace((gelenSatir = st.ReadLine())))
                 {
-                    soruSayisi++;
+                    SoruSayisi++;
 
-                    if (soruSayisi % 2 == 1)
+                    if (SoruSayisi % 2 == 1)
                     {
                         gbY += 210;
                         gbX = 0;
@@ -79,13 +79,13 @@ namespace SinavApp
                     gb.Location = new Point(gbX, gbY);
                     pnlSorular.Controls.Add(gb);
 
-                    string [] items = gelenSatir.Split('|');
+                    string[] items = gelenSatir.Split('|');
 
                     Label lbl = new Label();
                     lbl.Width = 330;
                     lbl.Location = new Point(10, 10);
                     lbl.AutoSize = true;
-                    lbl.Text = items[0];
+                    lbl.Text = SoruSayisi + ".  " + items[0];
 
                     gb.Controls.Add(lbl);
 
@@ -96,11 +96,54 @@ namespace SinavApp
                         rb.Text = items[i];
                         rb.Location = new Point(10, rbY);
                         rbY += 20;
+                        rb.Enabled = false;
+                        rb.CheckedChanged += Rb_CheckedChanged;
                         gb.Controls.Add(rb);
                     }
                 }
             }
+
+            prgCevapOrani.Maximum = SoruSayisi;
+            soruCevapKontrol = new byte[SoruSayisi];
         }
+
+        private void Rb_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton secilen = sender as RadioButton;
+
+            foreach (Control item in secilen.Parent.Controls)
+            {
+                if (item is Label)
+                {
+                    SoruSayisi = byte.Parse(((Label)item).Text.Split('.')[0]);
+                    break;
+                }
+            }
+
+            if (soruCevapKontrol[SoruSayisi - 1] == 0)
+            {
+                prgCevapOrani.Value++;
+                soruCevapKontrol[SoruSayisi - 1] = 1;
+            }
+        }
+
+        private void btnBaslat_Click(object sender, EventArgs e)
+        {
+            t = new Timer();
+            t.Tick += T_Tick;
+            t.Interval = 1000;
+            t.Start();
+
+            foreach (Control groupBox in pnlSorular.Controls)
+            {
+                foreach (Control radioBtn in groupBox.Controls)
+                {
+                    if (radioBtn is RadioButton)
+                        radioBtn.Enabled = true;
+                }
+            }
+        }
+
 
         private void T_Tick(object sender, EventArgs e)
         {
@@ -115,7 +158,67 @@ namespace SinavApp
                 lblKalanZaman.Text = ts.ToString(@"hh\:mm\:ss");
             }
             else
-                ((Timer)sender).Stop();
+            {
+                SinavBitir();
+            }
+        }
+
+        private void btnBitir_Click(object sender, EventArgs e)
+        {
+            SinavBitir();
+        }
+
+
+        private void SinavBitir()
+        {
+            btnBaslat.Enabled = false;
+
+            CevaplarYol = Path.Combine(Application.StartupPath.Replace("\\bin\\Debug", ""), "Cevaplar", (SinavAdi + "-" + AdSoyad + ".txt").Replace(" ", "-"));
+
+            if (!File.Exists(CevaplarYol))
+            {
+                File.Create(CevaplarYol).Close();
+            }
+            else
+            {
+                FileStream temizle = new FileStream(CevaplarYol, FileMode.Truncate);
+                temizle.Close();
+                temizle.Dispose();
+            }
+
+            using (StreamWriter sw = new StreamWriter(CevaplarYol))
+            {
+                sw.WriteLine(SinavAdi);
+
+                SoruSayisi = 0;
+
+                foreach (Control groupBox in pnlSorular.Controls)
+                {
+                    if (groupBox is GroupBox)
+                    {
+                        SoruSayisi++;
+                        byte sayac = 0;
+
+                        foreach (Control radioBtn in groupBox.Controls)
+                        {
+                            if (radioBtn is RadioButton)
+                            {
+                                sayac++;
+                                radioBtn.Enabled = false;
+
+                                if (((RadioButton)radioBtn).Checked)
+                                    VerilenCevap = sayac;
+                            }
+                        }
+
+                        sw.WriteLine(SoruSayisi + " " + VerilenCevap);
+                        VerilenCevap = 0;
+                    }
+                }
+            }
+
+            t.Stop();
+            btnBitir.Enabled = false;
         }
     }
 }
