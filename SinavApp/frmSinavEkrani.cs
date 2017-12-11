@@ -18,7 +18,7 @@ namespace SinavApp
         public TimeSpan SinavSüresi { get; private set; }
         public double SinavSüresiYüzdeOn { get; private set; }
         public List<SoruGroupBox> SoruKutulari { get; set; }
-        //public Dictionary<int, List<RadioButton>> SoruCevapListesi { get; set; }
+        public Dictionary<int, List<RadioButton>> SoruCevapListesi { get; set; }
 
         public frmSinavEkrani()
         {
