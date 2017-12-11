@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblSinavAdi = new System.Windows.Forms.Label();
             this.lblSinavAciklama = new System.Windows.Forms.Label();
             this.prgCevapOrani = new System.Windows.Forms.ProgressBar();
-            this.pnlSorular = new System.Windows.Forms.Panel();
+            this.pnlSorular = new SinavApp.CustomPanel();
             this.lblKalanZaman = new System.Windows.Forms.Label();
             this.lblAdSoyad = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // lblSinavAdi
@@ -50,7 +52,7 @@
             // 
             this.lblSinavAciklama.AutoSize = true;
             this.lblSinavAciklama.Location = new System.Drawing.Point(15, 61);
-            this.lblSinavAciklama.MaximumSize = new System.Drawing.Size(300, 0);
+            this.lblSinavAciklama.MaximumSize = new System.Drawing.Size(350, 0);
             this.lblSinavAciklama.Name = "lblSinavAciklama";
             this.lblSinavAciklama.Size = new System.Drawing.Size(50, 13);
             this.lblSinavAciklama.TabIndex = 1;
@@ -60,7 +62,7 @@
             // 
             this.prgCevapOrani.Location = new System.Drawing.Point(12, 175);
             this.prgCevapOrani.Name = "prgCevapOrani";
-            this.prgCevapOrani.Size = new System.Drawing.Size(680, 23);
+            this.prgCevapOrani.Size = new System.Drawing.Size(595, 23);
             this.prgCevapOrani.TabIndex = 2;
             // 
             // pnlSorular
@@ -68,7 +70,7 @@
             this.pnlSorular.AutoScroll = true;
             this.pnlSorular.Location = new System.Drawing.Point(12, 204);
             this.pnlSorular.Name = "pnlSorular";
-            this.pnlSorular.Size = new System.Drawing.Size(680, 283);
+            this.pnlSorular.Size = new System.Drawing.Size(595, 241);
             this.pnlSorular.TabIndex = 3;
             // 
             // lblKalanZaman
@@ -76,7 +78,7 @@
             this.lblKalanZaman.AutoSize = true;
             this.lblKalanZaman.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lblKalanZaman.ForeColor = System.Drawing.Color.Green;
-            this.lblKalanZaman.Location = new System.Drawing.Point(558, 13);
+            this.lblKalanZaman.Location = new System.Drawing.Point(486, 13);
             this.lblKalanZaman.Name = "lblKalanZaman";
             this.lblKalanZaman.Size = new System.Drawing.Size(87, 31);
             this.lblKalanZaman.TabIndex = 4;
@@ -85,18 +87,22 @@
             // lblAdSoyad
             // 
             this.lblAdSoyad.AutoSize = true;
-            this.lblAdSoyad.Location = new System.Drawing.Point(592, 61);
+            this.lblAdSoyad.Location = new System.Drawing.Point(520, 61);
             this.lblAdSoyad.Name = "lblAdSoyad";
             this.lblAdSoyad.Size = new System.Drawing.Size(53, 13);
             this.lblAdSoyad.TabIndex = 5;
             this.lblAdSoyad.Text = "Ad Soyad";
             this.lblAdSoyad.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // frmSinavEkrani
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(700, 499);
+            this.ClientSize = new System.Drawing.Size(689, 457);
             this.Controls.Add(this.lblAdSoyad);
             this.Controls.Add(this.lblKalanZaman);
             this.Controls.Add(this.pnlSorular);
@@ -116,8 +122,10 @@
         private System.Windows.Forms.Label lblSinavAdi;
         private System.Windows.Forms.Label lblSinavAciklama;
         private System.Windows.Forms.ProgressBar prgCevapOrani;
-        private System.Windows.Forms.Panel pnlSorular;
+        private CustomPanel pnlSorular;
         private System.Windows.Forms.Label lblKalanZaman;
         public System.Windows.Forms.Label lblAdSoyad;
+        private System.Windows.Forms.Timer timer1;
+
     }
 }

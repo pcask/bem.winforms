@@ -15,8 +15,8 @@ namespace SinavApp
     {
         public string AdSoyad { get; set; }
         public string SinavDosyaYolu { get; set; }
-        public int SinavSuresi { get; private set; }
-        public double SinavSuresiUyariYuzdesi { get; set; }
+        public TimeSpan SinavSüresi { get; private set; }
+        public double SinavSüresiYüzdeOn { get; private set; }
 
         public frmSinavEkrani()
         {
@@ -33,89 +33,88 @@ namespace SinavApp
             SinavDosyaYolu = sinavDosyaYolu;
         }
 
-
         private void frmSinavEkrani_Load(object sender, EventArgs e)
         {
-            Form frmGiris = this.Owner as frmGiris;
-
-            lblAdSoyad.Text = frmGiris.Controls.Find("txtAdSoyad", true)[0].Text;
-
-            string sinavYol = frmGiris.Controls.Find("lblSinavDosyaYolu", true)[0].Text;
-
-            Timer t = new Timer();
-            t.Tick += T_Tick;
-            t.Interval = 1000;
-            t.Start();
-
-            using (StreamReader st = new StreamReader(sinavYol))
+            using (var streamReader = new StreamReader(SinavDosyaYolu))
             {
-                lblSinavAdi.Text = st.ReadLine();
-                lblSinavAciklama.Text = st.ReadLine();
-                SinavSuresi = int.Parse(st.ReadLine());
-                SinavSuresiUyariYuzdesi = SinavSuresi * 0.1;
+                lblSinavAdi.Text = streamReader.ReadLine();
+                lblSinavAciklama.Text = streamReader.ReadLine();
+                SinavSüresi = TimeSpan.FromSeconds(int.Parse(streamReader.ReadLine()));
+                SinavSüresiYüzdeOn = SinavSüresi.TotalSeconds * 0.1;
 
-                int gbX = 0;
-                int gbY = -210;
-                byte soruSayisi = 0;
+                string line = "";
 
-                string gelenSatir = "";
-                while (!string.IsNullOrWhiteSpace((gelenSatir = st.ReadLine())))
+                int soruSayisi = 0;
+                int top = -350;
+                int left = 0;
+
+                while (!string.IsNullOrWhiteSpace((line = streamReader.ReadLine())))
                 {
                     soruSayisi++;
+                    var items = line.Split('|');
 
-                    if (soruSayisi % 2 == 1)
+                    top += (soruSayisi % 2 == 1) ? 350 : 0;
+                    left = (soruSayisi % 2 == 1) ? 0 : 286;
+
+                    var groupBox = new GroupBox
                     {
-                        gbY += 210;
-                        gbX = 0;
-                    }
-                    else
+                        Location = new Point(left, top),
+                        Size = new Size(275, 300),
+                        Text = $"{soruSayisi}. Soru"
+                    };
+
+                    var lbl = new Label
                     {
-                        gbX += 340;
-                    }
+                        Text = items[0],
+                        MaximumSize = new Size(260, 0),
+                        AutoSize = true,
+                        Location = new Point(15, 15)
+                    };
 
-                    GroupBox gb = new GroupBox();
-                    gb.Width = 330;
-                    gb.Height = 200;
-                    gb.Location = new Point(gbX, gbY);
-                    pnlSorular.Controls.Add(gb);
+                    int radioTop = lbl.Location.Y+ lbl.PreferredHeight +15;
 
-                    string [] items = gelenSatir.Split('|');
-
-                    Label lbl = new Label();
-                    lbl.Width = 330;
-                    lbl.Location = new Point(10, 10);
-                    lbl.AutoSize = true;
-                    lbl.Text = items[0];
-
-                    gb.Controls.Add(lbl);
-
-                    int rbY = lbl.Location.Y + lbl.PreferredHeight + 15;
-                    for (int i = 1; i < items.Length - 1; i++)
+                    for (int i = 1; i < items.Length-1; i++)
                     {
-                        RadioButton rb = new RadioButton();
-                        rb.Text = items[i];
-                        rb.Location = new Point(10, rbY);
-                        rbY += 20;
-                        gb.Controls.Add(rb);
+                        var radio = new RadioButton
+                        {
+                            Text = items[i],
+                            Location = new Point(20, radioTop),
+                            Enabled = false,
+                            AutoSize = true,
+                            MaximumSize = new Size(200,0)
+                        };
+
+                        groupBox.Controls.Add(radio);
+
+                        radioTop += 30;
                     }
-                }
+
+                    groupBox.Controls.Add(lbl);
+
+                    pnlSorular.Controls.Add(groupBox);
+
+                };
+
+
+                //timer1.Interval = 1;
             }
+
+            timer1.Start();
         }
 
-        private void T_Tick(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
-            if (SinavSuresi > 0)
+            if (SinavSüresi.TotalSeconds == 0)
             {
-                if (SinavSuresi <= SinavSuresiUyariYuzdesi)
-                    lblKalanZaman.ForeColor = Color.Red;
-
-                SinavSuresi--;
-
-                TimeSpan ts = TimeSpan.FromSeconds(SinavSuresi);
-                lblKalanZaman.Text = ts.ToString(@"hh\:mm\:ss");
+                timer1.Stop();
             }
-            else
-                ((Timer)sender).Stop();
+            this.lblKalanZaman.Text = SinavSüresi.ToString(@"hh\:mm\:ss");
+
+            if (SinavSüresi.TotalSeconds <= SinavSüresiYüzdeOn)
+            {
+                lblKalanZaman.ForeColor = Color.Red;
+            }
+            SinavSüresi = TimeSpan.FromSeconds(SinavSüresi.TotalSeconds - 1);
         }
     }
 }
