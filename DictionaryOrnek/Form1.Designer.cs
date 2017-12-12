@@ -28,98 +28,98 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.gbButton = new System.Windows.Forms.GroupBox();
-            this.gbLabel = new System.Windows.Forms.GroupBox();
-            this.gbRadio = new System.Windows.Forms.GroupBox();
-            this.cbControls = new System.Windows.Forms.ComboBox();
-            this.btnEkle = new System.Windows.Forms.Button();
-            this.cbRenkler = new System.Windows.Forms.ComboBox();
-            this.btnBoya = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // gbButton
+            // groupBox1
             // 
-            this.gbButton.Location = new System.Drawing.Point(12, 64);
-            this.gbButton.Name = "gbButton";
-            this.gbButton.Size = new System.Drawing.Size(163, 415);
-            this.gbButton.TabIndex = 0;
-            this.gbButton.TabStop = false;
-            this.gbButton.Text = "Button";
+            this.groupBox1.Location = new System.Drawing.Point(12, 64);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(163, 415);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Button";
             // 
-            // gbLabel
+            // groupBox2
             // 
-            this.gbLabel.Location = new System.Drawing.Point(202, 64);
-            this.gbLabel.Name = "gbLabel";
-            this.gbLabel.Size = new System.Drawing.Size(163, 415);
-            this.gbLabel.TabIndex = 0;
-            this.gbLabel.TabStop = false;
-            this.gbLabel.Text = "Label";
+            this.groupBox2.Location = new System.Drawing.Point(202, 64);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(163, 415);
+            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Label";
             // 
-            // gbRadio
+            // groupBox3
             // 
-            this.gbRadio.Location = new System.Drawing.Point(392, 64);
-            this.gbRadio.Name = "gbRadio";
-            this.gbRadio.Size = new System.Drawing.Size(163, 415);
-            this.gbRadio.TabIndex = 0;
-            this.gbRadio.TabStop = false;
-            this.gbRadio.Text = "Radio";
+            this.groupBox3.Location = new System.Drawing.Point(392, 64);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(163, 415);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Radio";
             // 
-            // cbControls
+            // comboBox1
             // 
-            this.cbControls.FormattingEnabled = true;
-            this.cbControls.Items.AddRange(new object[] {
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
             "Button",
             "Label",
             "Radio"});
-            this.cbControls.Location = new System.Drawing.Point(12, 22);
-            this.cbControls.Name = "cbControls";
-            this.cbControls.Size = new System.Drawing.Size(121, 21);
-            this.cbControls.TabIndex = 1;
+            this.comboBox1.Location = new System.Drawing.Point(32, 22);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 1;
             // 
-            // btnEkle
+            // button1
             // 
-            this.btnEkle.Location = new System.Drawing.Point(139, 20);
-            this.btnEkle.Name = "btnEkle";
-            this.btnEkle.Size = new System.Drawing.Size(75, 23);
-            this.btnEkle.TabIndex = 2;
-            this.btnEkle.Text = "EKLE";
-            this.btnEkle.UseVisualStyleBackColor = true;
-            this.btnEkle.Click += new System.EventHandler(this.btnEkle_Click);
+            this.button1.Location = new System.Drawing.Point(159, 20);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // cbRenkler
+            // comboBox2
             // 
-            this.cbRenkler.FormattingEnabled = true;
-            this.cbRenkler.Items.AddRange(new object[] {
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
             "Kırmızı",
             "Mavi",
             "Yeşil"});
-            this.cbRenkler.Location = new System.Drawing.Point(350, 20);
-            this.cbRenkler.Name = "cbRenkler";
-            this.cbRenkler.Size = new System.Drawing.Size(121, 21);
-            this.cbRenkler.TabIndex = 3;
+            this.comboBox2.Location = new System.Drawing.Point(328, 22);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 21);
+            this.comboBox2.TabIndex = 3;
             // 
-            // btnBoya
+            // button2
             // 
-            this.btnBoya.Location = new System.Drawing.Point(477, 20);
-            this.btnBoya.Name = "btnBoya";
-            this.btnBoya.Size = new System.Drawing.Size(75, 23);
-            this.btnBoya.TabIndex = 4;
-            this.btnBoya.Text = "BOYA";
-            this.btnBoya.UseVisualStyleBackColor = true;
-            this.btnBoya.Click += new System.EventHandler(this.btnBoya_Click);
+            this.button2.Location = new System.Drawing.Point(455, 22);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(564, 491);
-            this.Controls.Add(this.btnBoya);
-            this.Controls.Add(this.cbRenkler);
-            this.Controls.Add(this.btnEkle);
-            this.Controls.Add(this.cbControls);
-            this.Controls.Add(this.gbLabel);
-            this.Controls.Add(this.gbRadio);
-            this.Controls.Add(this.gbButton);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -128,13 +128,13 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox gbButton;
-        private System.Windows.Forms.GroupBox gbLabel;
-        private System.Windows.Forms.GroupBox gbRadio;
-        private System.Windows.Forms.ComboBox cbControls;
-        private System.Windows.Forms.Button btnEkle;
-        private System.Windows.Forms.ComboBox cbRenkler;
-        private System.Windows.Forms.Button btnBoya;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Button button2;
     }
 }
 
