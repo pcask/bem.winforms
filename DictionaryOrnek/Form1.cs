@@ -33,10 +33,7 @@ namespace DictionaryOrnek
                     break;
             }
         }
-
-
-
-
+        
         private void RadioEkle()
         {
             if (!EkliOgeler.ContainsKey("radio"))
