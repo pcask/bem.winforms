@@ -32,7 +32,7 @@
             this.lblSinavAdi = new System.Windows.Forms.Label();
             this.lblSinavAciklama = new System.Windows.Forms.Label();
             this.prgCevapOrani = new System.Windows.Forms.ProgressBar();
-            this.pnlSorular = new SinavApp.CustomPanel();
+            this.pnlSorular = new System.Windows.Forms.Panel();
             this.lblKalanZaman = new System.Windows.Forms.Label();
             this.lblAdSoyad = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -148,7 +148,7 @@
         private System.Windows.Forms.Label lblSinavAdi;
         private System.Windows.Forms.Label lblSinavAciklama;
         private System.Windows.Forms.ProgressBar prgCevapOrani;
-        private CustomPanel pnlSorular;
+        private System.Windows.Forms.Panel pnlSorular;
         private System.Windows.Forms.Label lblKalanZaman;
         public System.Windows.Forms.Label lblAdSoyad;
         private System.Windows.Forms.Timer timer1;
