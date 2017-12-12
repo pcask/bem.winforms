@@ -25,9 +25,10 @@ namespace DictionaryOrnek
         {
             switch (comboBox1.SelectedItem.ToString().ToLower())
             {
-                case "button": ButonEkle();break;
-                case "label": LabelEkle();break;
-                case "radio": RadioEkle();break;
+                case "button": Ekle<Button>("button", groupBox1);break;
+                case "label": Ekle<Label>("label", groupBox2); break;
+                case "radio": Ekle<RadioButton>("radio", groupBox3); break;
+                case "check": Ekle<CheckBox>("check", panel1); break;
                 default:
                     break;
             }
@@ -57,8 +58,6 @@ namespace DictionaryOrnek
             groupBox3.Controls.Add(radio);
         }
 
-
-
         private void ButonEkle()
         {
             if (!EkliOgeler.ContainsKey("button"))
@@ -80,25 +79,24 @@ namespace DictionaryOrnek
             groupBox1.Controls.Add(button);
         }
 
-        private void LabelEkle()
+        private void Ekle<T> (string key, Control control) where T :  Control, new()
         {
-            if (!EkliOgeler.ContainsKey("label"))
+            if (!EkliOgeler.ContainsKey(key))
             {
-                EkliOgeler.Add("label", new List<Control>());
+                EkliOgeler.Add(key, new List<Control>());
             }
 
-
-            int top = (EkliOgeler["label"].Count > 0) ? EkliOgeler["label"][EkliOgeler["label"].Count - 1].Top : -10;
-            var label = new Label
+            int top = (EkliOgeler[key].Count > 0) ? EkliOgeler[key][EkliOgeler[key].Count - 1].Top : -10;
+            var label = new T
             {
                 Size = new Size(120, 20),
-                Text = (EkliOgeler["label"].Count + 1).ToString(),
+                Text = (EkliOgeler[key].Count + 1).ToString(),
                 Location = new Point(20, top + 30)
             };
 
-            EkliOgeler["label"].Add(label);
+            EkliOgeler[key].Add(label);
 
-            groupBox2.Controls.Add(label);
+            control.Controls.Add(label);
         }
 
         private void button2_Click(object sender, EventArgs e)
